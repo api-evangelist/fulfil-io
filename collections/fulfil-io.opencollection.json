@@ -1,0 +1,256 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Fulfil REST API (v2)",
+    "version": "2.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "apikey": {
+        "key": "X-API-KEY",
+        "value": "{{apiKey}}",
+        "in": "header"
+      }
+    }
+  },
+  "items": [
+    {
+      "info": { "name": "Authentication", "type": "folder" },
+      "items": [
+        {
+          "info": { "name": "Test credentials.", "type": "http" },
+          "http": { "method": "GET", "url": "https://{{merchantId}}.fulfil.io/api/v2/test" },
+          "docs": "Verifies that the supplied API key or token is valid."
+        }
+      ]
+    },
+    {
+      "info": { "name": "Sales Orders", "type": "folder" },
+      "items": [
+        {
+          "info": { "name": "Search sales orders.", "type": "http" },
+          "http": { "method": "GET", "url": "https://{{merchantId}}.fulfil.io/api/v2/model/sale.sale?per_page=100" },
+          "docs": "Searches sales orders (sale.sale)."
+        },
+        {
+          "info": { "name": "Create sales orders.", "type": "http" },
+          "http": {
+            "method": "POST",
+            "url": "https://{{merchantId}}.fulfil.io/api/v2/model/sale.sale",
+            "body": { "type": "json", "data": "[{ \"party\": 1, \"lines\": [] }]" }
+          },
+          "docs": "Creates one or more sales orders (sale.sale)."
+        },
+        {
+          "info": { "name": "Search and read sales orders.", "type": "http" },
+          "http": {
+            "method": "PUT",
+            "url": "https://{{merchantId}}.fulfil.io/api/v2/model/sale.sale/search_read",
+            "body": { "type": "json", "data": "{\n  \"filter\": [[\"state\", \"=\", \"confirmed\"]],\n  \"fields\": [\"reference\", \"party\", \"total_amount\", \"state\"],\n  \"limit\": 100\n}" }
+          },
+          "docs": "Search and read sales orders in a single call."
+        }
+      ]
+    },
+    {
+      "info": { "name": "Products & Variants", "type": "folder" },
+      "items": [
+        {
+          "info": { "name": "Search product templates.", "type": "http" },
+          "http": { "method": "GET", "url": "https://{{merchantId}}.fulfil.io/api/v2/model/product.template?per_page=100" },
+          "docs": "Searches product templates (product.template)."
+        },
+        {
+          "info": { "name": "Search product variants.", "type": "http" },
+          "http": { "method": "GET", "url": "https://{{merchantId}}.fulfil.io/api/v2/model/product.product?per_page=100" },
+          "docs": "Searches product variants / SKUs (product.product)."
+        },
+        {
+          "info": { "name": "Search and read product variants.", "type": "http" },
+          "http": {
+            "method": "PUT",
+            "url": "https://{{merchantId}}.fulfil.io/api/v2/model/product.product/search_read",
+            "body": { "type": "json", "data": "{\n  \"filter\": [[\"code\", \"ilike\", \"SKU%\"]],\n  \"fields\": [\"code\", \"barcode\", \"list_price\"],\n  \"limit\": 100\n}" }
+          },
+          "docs": "Search and read product variants (product.product)."
+        }
+      ]
+    },
+    {
+      "info": { "name": "Inventory & Stock", "type": "folder" },
+      "items": [
+        {
+          "info": { "name": "Search stock moves.", "type": "http" },
+          "http": { "method": "GET", "url": "https://{{merchantId}}.fulfil.io/api/v2/model/stock.move?per_page=100" },
+          "docs": "Searches inventory movements (stock.move)."
+        },
+        {
+          "info": { "name": "Search stock locations.", "type": "http" },
+          "http": { "method": "GET", "url": "https://{{merchantId}}.fulfil.io/api/v2/model/stock.location" },
+          "docs": "Searches warehouses, zones, and bins (stock.location)."
+        }
+      ]
+    },
+    {
+      "info": { "name": "Customers", "type": "folder" },
+      "items": [
+        {
+          "info": { "name": "Search parties.", "type": "http" },
+          "http": { "method": "GET", "url": "https://{{merchantId}}.fulfil.io/api/v2/model/party.party?per_page=100" },
+          "docs": "Searches parties (party.party) - customers, suppliers, contacts."
+        },
+        {
+          "info": { "name": "Create parties.", "type": "http" },
+          "http": {
+            "method": "POST",
+            "url": "https://{{merchantId}}.fulfil.io/api/v2/model/party.party",
+            "body": { "type": "json", "data": "[{ \"name\": \"Acme Corp\" }]" }
+          },
+          "docs": "Creates one or more parties (party.party)."
+        }
+      ]
+    },
+    {
+      "info": { "name": "Shipments", "type": "folder" },
+      "items": [
+        {
+          "info": { "name": "Search outbound shipments.", "type": "http" },
+          "http": { "method": "GET", "url": "https://{{merchantId}}.fulfil.io/api/v2/model/stock.shipment.out?per_page=100" },
+          "docs": "Searches customer (outbound) shipments (stock.shipment.out)."
+        },
+        {
+          "info": { "name": "Search inbound shipments.", "type": "http" },
+          "http": { "method": "GET", "url": "https://{{merchantId}}.fulfil.io/api/v2/model/stock.shipment.in?per_page=100" },
+          "docs": "Searches supplier (inbound) shipments / receipts (stock.shipment.in)."
+        }
+      ]
+    },
+    {
+      "info": { "name": "Purchases", "type": "folder" },
+      "items": [
+        {
+          "info": { "name": "Search purchase orders.", "type": "http" },
+          "http": { "method": "GET", "url": "https://{{merchantId}}.fulfil.io/api/v2/model/purchase.purchase?per_page=100" },
+          "docs": "Searches purchase orders (purchase.purchase)."
+        },
+        {
+          "info": { "name": "Create purchase orders.", "type": "http" },
+          "http": {
+            "method": "POST",
+            "url": "https://{{merchantId}}.fulfil.io/api/v2/model/purchase.purchase",
+            "body": { "type": "json", "data": "[{ \"party\": 1, \"lines\": [] }]" }
+          },
+          "docs": "Creates one or more purchase orders (purchase.purchase)."
+        }
+      ]
+    },
+    {
+      "info": { "name": "Manufacturing", "type": "folder" },
+      "items": [
+        {
+          "info": { "name": "Search production orders.", "type": "http" },
+          "http": { "method": "GET", "url": "https://{{merchantId}}.fulfil.io/api/v2/model/production?per_page=100" },
+          "docs": "Searches manufacturing / production orders (production)."
+        }
+      ]
+    },
+    {
+      "info": { "name": "Webhooks", "type": "folder" },
+      "items": [
+        {
+          "info": { "name": "List webhook subscriptions.", "type": "http" },
+          "http": { "method": "GET", "url": "https://{{merchantId}}.fulfil.io/api/v2/model/webhook.webhook" },
+          "docs": "Lists registered webhook subscriptions."
+        },
+        {
+          "info": { "name": "Create a webhook subscription.", "type": "http" },
+          "http": {
+            "method": "POST",
+            "url": "https://{{merchantId}}.fulfil.io/api/v2/model/webhook.webhook",
+            "body": { "type": "json", "data": "[{ \"model\": \"sale.sale\", \"url\": \"https://example.com/webhooks/fulfil\" }]" }
+          },
+          "docs": "Registers a new webhook subscription. Deliveries are HTTP POSTs signed with HMAC-SHA256."
+        }
+      ]
+    },
+    {
+      "info": { "name": "Model Interface", "type": "folder" },
+      "items": [
+        {
+          "info": { "name": "Search records of a model.", "type": "http" },
+          "http": {
+            "method": "GET",
+            "url": "https://{{merchantId}}.fulfil.io/api/v2/model/:model_name?per_page=100",
+            "params": [
+              { "name": "model_name", "value": "sale.sale", "type": "path", "description": "The Fulfil model name." }
+            ]
+          },
+          "docs": "Searches records of any model."
+        },
+        {
+          "info": { "name": "Read a record.", "type": "http" },
+          "http": {
+            "method": "GET",
+            "url": "https://{{merchantId}}.fulfil.io/api/v2/model/:model_name/:id",
+            "params": [
+              { "name": "model_name", "value": "sale.sale", "type": "path", "description": "The Fulfil model name." },
+              { "name": "id", "value": "1", "type": "path", "description": "The record id." }
+            ]
+          },
+          "docs": "Retrieves a single record by id."
+        },
+        {
+          "info": { "name": "Update a record.", "type": "http" },
+          "http": {
+            "method": "PUT",
+            "url": "https://{{merchantId}}.fulfil.io/api/v2/model/:model_name/:id",
+            "params": [
+              { "name": "model_name", "value": "sale.sale", "type": "path", "description": "The Fulfil model name." },
+              { "name": "id", "value": "1", "type": "path", "description": "The record id." }
+            ],
+            "body": { "type": "json", "data": "{ \"comment\": \"Updated via API\" }" }
+          },
+          "docs": "Updates a single record by id."
+        },
+        {
+          "info": { "name": "Delete a record.", "type": "http" },
+          "http": {
+            "method": "DELETE",
+            "url": "https://{{merchantId}}.fulfil.io/api/v2/model/:model_name/:id",
+            "params": [
+              { "name": "model_name", "value": "sale.sale", "type": "path", "description": "The Fulfil model name." },
+              { "name": "id", "value": "1", "type": "path", "description": "The record id." }
+            ]
+          },
+          "docs": "Deletes a single record by id."
+        },
+        {
+          "info": { "name": "Search and read (any model).", "type": "http" },
+          "http": {
+            "method": "PUT",
+            "url": "https://{{merchantId}}.fulfil.io/api/v2/model/:model_name/search_read",
+            "params": [
+              { "name": "model_name", "value": "sale.sale", "type": "path", "description": "The Fulfil model name." }
+            ],
+            "body": { "type": "json", "data": "{\n  \"filter\": [],\n  \"fields\": [\"id\"],\n  \"limit\": 100\n}" }
+          },
+          "docs": "Search and read records of any model in one call."
+        },
+        {
+          "info": { "name": "Count records.", "type": "http" },
+          "http": {
+            "method": "PUT",
+            "url": "https://{{merchantId}}.fulfil.io/api/v2/model/:model_name/count",
+            "params": [
+              { "name": "model_name", "value": "sale.sale", "type": "path", "description": "The Fulfil model name." }
+            ],
+            "body": { "type": "json", "data": "{ \"filter\": [] }" }
+          },
+          "docs": "Returns the number of records matching a domain filter."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

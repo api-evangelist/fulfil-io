@@ -1,0 +1,121 @@
+specification: API Commons Plans
+specificationVersion: '0.1'
+schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main/schema/api-commons.yml#/$defs/Plans
+provider: Fulfil
+providerId: fulfil-io
+created: '2026-07-04'
+modified: '2026-07-04'
+reconciled: false
+tags:
+- ERP
+- E-commerce
+- Order Management
+- Operations
+- Plans
+description: >-
+  Fulfil is a subscription cloud ERP sold to merchants, not a metered
+  developer API product. Pricing is quote-based (contact sales) and scales with
+  the modules deployed (order management, WMS, MRP/manufacturing, accounting),
+  order/shipment volume, number of users, and warehouses. There is no
+  self-service, publicly listed price tier and no separate per-call charge for
+  the REST API - the API is included with a Fulfil subscription and used to
+  integrate and automate the same ERP data a merchant already pays for. Exact
+  subscription rates are not published and are not reconciled here.
+notes: >-
+  Fulfil does not publish fixed dollar amounts; plans are negotiated with sales
+  based on modules, volume, users, and warehouses. Verify current packaging and
+  any implementation/onboarding fees directly with Fulfil during reconciliation.
+sources:
+- https://www.fulfil.io/
+- https://www.fulfil.io/platform/api/
+- https://developers.fulfil.io/
+plans:
+- id: fulfil-subscription
+  name: Fulfil ERP Subscription (Quote-Based)
+  type: subscription
+  description: >-
+    Core Fulfil cloud ERP subscription covering order management, inventory,
+    and the REST API. Priced by quote based on order/shipment volume, users,
+    and warehouses. The API is included at no additional per-call fee.
+  entries:
+  - label: ERP Subscription
+    name: erp_subscription
+    type: flat
+    metric: subscription
+    limit: -1
+    timeFrame: month
+    geo: global
+    unit: 1
+    price: contact sales
+    userMultiplied: false
+  elements:
+  - name: REST API (v2) Access
+  - name: Order Management
+  - name: Inventory Management
+  - name: Webhooks
+- id: fulfil-warehouse
+  name: Warehouse Management (WMS) Add-On
+  type: subscription
+  description: >-
+    Warehouse management module (picking, packing, shipping, multi-location
+    stock) layered onto the core subscription. Quote-based.
+  entries:
+  - label: WMS Module
+    name: wms_module
+    type: flat
+    metric: subscription
+    limit: -1
+    timeFrame: month
+    geo: global
+    unit: 1
+    price: contact sales
+    userMultiplied: false
+  elements:
+  - name: Warehouse Operations
+  - name: Shipping and Fulfillment
+  - name: Multi-Location Inventory
+- id: fulfil-manufacturing
+  name: Manufacturing (MRP) Add-On
+  type: subscription
+  description: >-
+    Manufacturing / production module (bills of material, production orders,
+    MRP) layered onto the core subscription. Quote-based.
+  entries:
+  - label: Manufacturing Module
+    name: manufacturing_module
+    type: flat
+    metric: subscription
+    limit: -1
+    timeFrame: month
+    geo: global
+    unit: 1
+    price: contact sales
+    userMultiplied: false
+  elements:
+  - name: Bills of Material
+  - name: Production Orders
+  - name: Material Requirements Planning
+- id: fulfil-enterprise
+  name: Enterprise / High Volume
+  type: enterprise
+  description: >-
+    Custom agreement for high-volume Shopify Plus and DTC brands - elevated API
+    throughput, dedicated support, SLAs, and negotiated terms. Contact Fulfil.
+  entries:
+  - label: Enterprise Agreement
+    name: enterprise
+    type: flat
+    metric: contract
+    limit: -1
+    timeFrame: year
+    geo: global
+    unit: 1
+    price: contact sales
+    userMultiplied: false
+  elements:
+  - name: Elevated API Rate Limits
+  - name: Dedicated Support and SLAs
+  - name: Google Pub/Sub Event Delivery
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com

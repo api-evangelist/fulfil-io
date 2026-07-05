@@ -1,0 +1,92 @@
+specification: FinOps Framework
+specificationVersion: '1.0'
+schema: https://www.finops.org/framework/
+provider: Fulfil
+providerId: fulfil-io
+created: '2026-07-04'
+modified: '2026-07-04'
+reconciled: false
+tags:
+- ERP
+- E-commerce
+- Operations
+- FinOps
+- Cost Management
+- FOCUS
+description: >-
+  FinOps view of Fulfil spend. Fulfil is a subscription cloud ERP billed by
+  quote, scaling with the modules deployed (order management, WMS,
+  manufacturing/MRP, accounting), order and shipment volume, user seats, and
+  warehouses. The REST API carries no separate per-call charge - it is included
+  with the subscription - so API "cost" is effectively the ERP subscription plus
+  the engineering effort to build and operate integrations. There is no
+  usage-metered API line item to allocate; cost management centers on right-sizing
+  the subscription (modules, seats) and on efficient integration design.
+notes: >-
+  Fulfil does not publish per-unit or per-call rates; the dominant, recurring
+  cost is the negotiated ERP subscription. Verify packaging, seat counts, and
+  any onboarding/implementation fees with Fulfil. There is no consumption meter
+  to reconcile against a FOCUS usage record for the API itself.
+sources:
+- https://www.fulfil.io/
+- https://www.fulfil.io/platform/api/
+- https://developers.fulfil.io/
+- https://focus.finops.org/focus-specification/v1-3/
+alignedWith:
+  framework: FinOps Foundation Framework
+  frameworkUrl: https://www.finops.org/framework/
+  dataSpec: FOCUS
+  dataSpecVersion: '1.3'
+  dataSpecUrl: https://focus.finops.org/focus-specification/v1-3/
+publisherName: Fulfil
+serviceCategory: Business Applications (ERP)
+billingModel:
+  pricingCategory: Subscription-Based
+  billingFrequency: Monthly
+  billingCurrency: USD
+  chargeCategories:
+  - Purchase
+  - Usage
+  - Adjustment
+focusColumns:
+  ServiceName: Fulfil ERP
+  ServiceCategory: Business Applications
+  ProviderName: Fulfil
+  PublisherName: Fulfil
+  InvoiceIssuerName: Fulfil
+  BillingCurrency: USD
+  ChargeCategory: Purchase
+  PricingCategory: Subscription-Based
+meters:
+- name: erp_subscription
+  description: Recurring Fulfil ERP subscription fee, scaled by modules, seats, volume, and warehouses.
+  unit: subscription
+  aggregation: sum
+  dimensions:
+  - account
+  - module
+- name: user_seats
+  description: Number of licensed users on the subscription.
+  unit: seats
+  aggregation: max
+  dimensions:
+  - account
+- name: api_requests
+  description: REST API requests (no direct charge; monitored against plan rate limits, not billed per call).
+  unit: requests
+  aggregation: sum
+  dimensions:
+  - account
+  - integration
+principles:
+- name: Visibility
+  description: Track which modules and how many seats are actually used; monitor API request volume against the plan's rate limit even though it is not separately billed.
+- name: Allocation
+  description: Attribute the ERP subscription to the teams and channels (Shopify, wholesale, manufacturing) that depend on it; tag integrations by owner.
+- name: Optimization
+  description: Right-size modules and seats; design integrations to use webhooks/Pub/Sub and search_read/pagination efficiently so a single subscription serves more workload without hitting rate limits.
+- name: Accountability
+  description: Review the subscription and integration footprint on a regular cadence; renegotiate packaging as order/shipment volume changes.
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com

@@ -1,0 +1,60 @@
+specification: API Commons Rate Limits
+specificationVersion: '0.1'
+schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main/schema/api-commons.yml#/$defs/RateLimits
+provider: Fulfil
+providerId: fulfil-io
+created: '2026-07-04'
+modified: '2026-07-04'
+reconciled: false
+tags:
+- ERP
+- E-commerce
+- Operations
+- Rate Limiting
+- Quotas
+description: >-
+  Fulfil advertises a high REST API throughput ceiling - marketing materials
+  cite a standard limit of 1,000+ requests per minute, positioned well above
+  legacy ERPs that cap at 100-500 calls/minute. High-volume Shopify Plus brands
+  and custom integrations with extreme needs are directed to contact Fulfil to
+  raise limits. Fulfil does not publish a precise, versioned per-endpoint rate
+  table; the exact enforced numbers depend on plan and are confirmed with
+  Fulfil. Requests that exceed the limit are throttled with HTTP 429.
+notes: >-
+  The "1,000+ requests per minute" figure is a published marketing claim rather
+  than a documented per-account contractual number; treat it as indicative and
+  verify enforced limits for your account with Fulfil during reconciliation.
+  For very high volumes, Fulfil recommends its Google Pub/Sub event delivery
+  option instead of polling.
+sources:
+- https://www.fulfil.io/platform/api/
+- https://developers.fulfil.io/
+- https://www.fulfil.io/
+responseCodes:
+  throttled: 429
+limits:
+- name: Standard API Requests
+  scope: account
+  metric: requests
+  limit: 1000+ per minute (advertised)
+  notes: Marketing-stated standard ceiling; enforced value depends on plan.
+- name: High-Volume / Enterprise
+  scope: account
+  metric: requests
+  limit: negotiated (contact sales)
+  notes: Elevated limits for Shopify Plus and high-volume custom integrations.
+- name: Pagination
+  scope: request
+  metric: records
+  limit: per_page (default ~100)
+  notes: Large result sets are paged; use page/per_page or search_read offset/limit.
+policies:
+- name: Throttling
+  description: Requests over the rate limit receive HTTP 429; clients should back off and retry.
+- name: Backoff Strategy
+  description: Implement exponential backoff with jitter and honor Retry-After on 429 responses.
+- name: Prefer Events Over Polling
+  description: For high-volume synchronization, subscribe to webhooks (or Google Pub/Sub) instead of polling models, reducing request pressure against the limit.
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com

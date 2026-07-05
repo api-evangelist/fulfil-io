@@ -1,0 +1,125 @@
+aid: fulfil-io
+name: Fulfil
+review:
+  question: Does Fulfil.io expose a documented public WebSocket API?
+  answer: false
+  date: '2026-07-04'
+  reviewer: API Evangelist
+  asyncapiSpecCreated: false
+  asyncapiScopeNote: |
+    No AsyncAPI document was authored. Fulfil's public API is a
+    request/response REST interface over HTTPS (the v2 model interface at
+    https://{merchant_id}.fulfil.io/api/v2). Fulfil's real-time behavior is
+    delivered by outbound webhooks - Fulfil POSTs event payloads to a
+    subscriber-configured HTTP endpoint (signed HMAC-SHA256) - and, for high
+    volume, by publishing to Google Cloud Pub/Sub. Neither is a server-push
+    transport on Fulfil's own API (there is no SSE stream and no WebSocket
+    endpoint), and Google Pub/Sub carries its own protocol out of scope for a
+    Fulfil AsyncAPI document.
+findings:
+  summary: |
+    Fulfil.io does not publish a documented public WebSocket API. Fulfil is a
+    cloud ERP and operations platform for e-commerce and wholesale merchants.
+    Its public API is REST v2, exposed through a single uniform "model
+    interface" at https://{merchant_id}.fulfil.io/api/v2, where every ERP model
+    (sale.sale, product.template, product.product, stock.move, stock.location,
+    party.party, stock.shipment.out, stock.shipment.in, purchase.purchase,
+    production, and thousands more) is addressed via generic CRUD, search_read,
+    count, and arbitrary method (action) calls. Authentication is a personal
+    access token in the X-API-KEY header (or HTTP Basic) for private
+    integrations, or OAuth 2.0 for public apps. Real-time updates are delivered
+    by outbound webhooks (HTTP POST, HMAC-SHA256 signed) with an optional Google
+    Cloud Pub/Sub delivery path for high volume. No realtime, bidirectional, or
+    streaming WebSocket (ws:// or wss://) endpoint - and no Server-Sent Events
+    stream - is documented on Fulfil's own API as of the review date.
+  openSource: |
+    Fulfil itself is a proprietary SaaS ERP; the API is included with a Fulfil
+    subscription rather than sold as a standalone metered product. Fulfil
+    maintains an open-source Python API client (github.com/fulfilio/fulfil-python-api)
+    that wraps the REST model interface (search_read, get, create, write,
+    delete, count, reports, wizards) and includes an HMAC-SHA256 webhook
+    verification helper. The model naming (sale.sale, stock.move, party.party)
+    reflects Fulfil's Tryton-lineage ERP data model.
+  transports:
+    - protocol: REST
+      scheme: https
+      baseURL: https://{merchant_id}.fulfil.io/api/v2
+      documented: true
+      note: The v2 model interface - generic CRUD, search_read, count, method/action calls, reports, wizards, and /test. Advertised as 6,000+ endpoints across all models.
+    - protocol: Webhook
+      scheme: https
+      documented: true
+      note: Outbound HTTP POST to a subscriber-configured URL on ERP events (order created, inventory change, shipment.created, etc.), signed with HMAC-SHA256. Server-to-endpoint HTTP, not WebSocket.
+    - protocol: Google Pub/Sub
+      scheme: https
+      documented: true
+      note: Optional high-volume event delivery via Google Cloud Pub/Sub instead of HTTP webhooks. External messaging system with its own protocol, out of scope for a Fulfil AsyncAPI.
+    - protocol: WebSocket
+      scheme: wss
+      documented: false
+      note: No WebSocket endpoint is documented anywhere in Fulfil's REST API reference, developer docs, or platform pages as of the review date.
+  endpointsConfirmedRest:
+    - GET    https://{merchant_id}.fulfil.io/api/v2/test
+    - GET    https://{merchant_id}.fulfil.io/api/v2/model/{model.name}
+    - POST   https://{merchant_id}.fulfil.io/api/v2/model/{model.name}
+    - GET    https://{merchant_id}.fulfil.io/api/v2/model/{model.name}/{id}
+    - PUT    https://{merchant_id}.fulfil.io/api/v2/model/{model.name}/{id}
+    - DELETE https://{merchant_id}.fulfil.io/api/v2/model/{model.name}/{id}
+    - PUT    https://{merchant_id}.fulfil.io/api/v2/model/{model.name}/search_read
+    - PUT    https://{merchant_id}.fulfil.io/api/v2/model/{model.name}/{method}
+  endpointsModeled:
+    - GET    https://{merchant_id}.fulfil.io/api/v2/model/{model.name}/count
+    - GET    https://{merchant_id}.fulfil.io/api/v2/model/sale.sale
+    - POST   https://{merchant_id}.fulfil.io/api/v2/model/sale.sale
+    - PUT    https://{merchant_id}.fulfil.io/api/v2/model/sale.sale/search_read
+    - GET    https://{merchant_id}.fulfil.io/api/v2/model/product.template
+    - GET    https://{merchant_id}.fulfil.io/api/v2/model/product.product
+    - PUT    https://{merchant_id}.fulfil.io/api/v2/model/product.product/search_read
+    - GET    https://{merchant_id}.fulfil.io/api/v2/model/stock.move
+    - GET    https://{merchant_id}.fulfil.io/api/v2/model/stock.location
+    - GET    https://{merchant_id}.fulfil.io/api/v2/model/party.party
+    - GET    https://{merchant_id}.fulfil.io/api/v2/model/stock.shipment.out
+    - GET    https://{merchant_id}.fulfil.io/api/v2/model/stock.shipment.in
+    - GET    https://{merchant_id}.fulfil.io/api/v2/model/purchase.purchase
+    - GET    https://{merchant_id}.fulfil.io/api/v2/model/production
+    - GET    https://{merchant_id}.fulfil.io/api/v2/model/webhook.webhook
+    - POST   https://{merchant_id}.fulfil.io/api/v2/model/webhook.webhook
+  endpointsNote: |
+    Fulfil exposes ONE uniform model interface (generic CRUD + search_read +
+    count + method calls) that applies identically to every model, so the
+    concrete per-model paths above (sale.sale, product.product, stock.move,
+    party.party, stock.shipment.out/in, purchase.purchase, production,
+    webhook.webhook) are honestly modeled by substituting confirmed model names
+    into the confirmed generic interface. The interface pattern, the /test
+    endpoint, the X-API-KEY/OAuth auth, and the model names themselves are
+    confirmed from Fulfil's developer docs and the official fulfil-python-api
+    client; exact per-model request/response field schemas are model-specific
+    and dynamically typed, and are represented as open JSON objects in the
+    OpenAPI.
+sources:
+  - url: https://developers.fulfil.io/
+    type: Documentation
+    note: Getting Started - REST API v2 overview; base URL https://{merchant_id}.fulfil.io/api/v2, X-API-KEY auth, /api/v2/test. All REST; no WebSocket mentioned.
+  - url: https://fulfiliorestapi.docs.apiary.io/
+    type: APIReference
+    note: Classic public REST API reference for the model interface (search/read/create/update/delete over /api/v2/model/...).
+  - url: https://www.fulfil.io/platform/api/
+    type: Documentation
+    note: Open API overview - 6,000+ endpoints, OAuth 2.0 and personal access tokens, webhooks for real-time ERP events, Google Pub/Sub delivery option. No WebSocket.
+  - url: https://github.com/fulfilio/fulfil-python-api
+    type: SourceCode
+    note: Official Python client. Confirms base URL pattern, X-API-KEY/Bearer/Session/OAuth auth, model methods (search_read, get, create, write, delete, count), reports/wizards, and HMAC-SHA256 webhook verification. Model names sale.sale, product.product, product.template, party.party, stock.move, stock.shipment.out, purchase.purchase, production.
+  - url: https://docs.fulfil.io/production/
+    type: Documentation
+    note: Manufacturing / production documentation.
+actions:
+  asyncapiPath: null
+  apisYmlUpdated: true
+  reason: |
+    No WebSocket protocol surface exists, and Fulfil's own public API is
+    request/response REST (the v2 model interface). No AsyncAPI document was
+    created because there is no server-push transport on Fulfil's own API to
+    model: real-time delivery is via outbound HTTP webhooks (server-to-endpoint
+    POST, HMAC-SHA256 signed) and an optional Google Cloud Pub/Sub path, both of
+    which are external delivery mechanisms rather than a streaming endpoint on
+    Fulfil's API.

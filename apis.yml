@@ -1,0 +1,255 @@
+aid: fulfil-io
+url: https://raw.githubusercontent.com/api-evangelist/fulfil-io/refs/heads/main/apis.yml
+name: Fulfil
+kind: company
+description: Fulfil is a cloud ERP and operations platform for e-commerce, DTC, and
+  wholesale merchants - unifying order management, inventory, warehouse operations
+  (WMS), manufacturing and production (MRP), purchasing, and accounting in one system,
+  purpose-built for Shopify Plus and high-volume DTC brands. The Fulfil REST API (v2)
+  exposes every ERP model through a single uniform model interface at
+  https://{merchant_id}.fulfil.io/api/v2, advertising 6,000+ endpoints with full
+  create/read/update/delete access, action calls, reports, and wizards across all
+  models. Authentication is via OAuth 2.0 for public apps or personal access tokens
+  (X-API-KEY / HTTP Basic) for private integrations, and outbound webhooks (with a
+  Google Pub/Sub option) deliver real-time ERP events such as order and shipment
+  changes.
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+tags:
+- ERP
+- E-commerce
+- Order Management
+- Inventory
+- Warehouse Management
+- Manufacturing
+- Operations
+created: '2026-07-04'
+modified: '2026-07-04'
+specificationVersion: '0.19'
+apis:
+- aid: fulfil-io:fulfil-io-sales-orders-api
+  name: Fulfil Sales Orders API
+  tags:
+  - Sales Orders
+  - Order Management
+  - E-commerce
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://developers.fulfil.io/
+  baseURL: https://{merchant_id}.fulfil.io/api/v2
+  properties:
+  - url: https://developers.fulfil.io/
+    type: Documentation
+  - url: https://fulfiliorestapi.docs.apiary.io/
+    type: APIReference
+  - url: openapi/fulfil-io-openapi.yml
+    type: OpenAPI
+  - url: collections/fulfil-io.postman_collection.json
+    type: PostmanCollection
+  - url: collections/fulfil-io.opencollection.json
+    type: OpenCollection
+  description: Create, search, read, update, and cancel sales orders through the
+    sale.sale model - the customer, order lines, amounts, shipment and invoice state
+    of every order captured from Shopify, marketplaces, or entered directly in Fulfil.
+- aid: fulfil-io:fulfil-io-products-variants-api
+  name: Fulfil Products & Variants API
+  tags:
+  - Products
+  - Variants
+  - Catalog
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://developers.fulfil.io/
+  baseURL: https://{merchant_id}.fulfil.io/api/v2
+  properties:
+  - url: https://developers.fulfil.io/
+    type: Documentation
+  - url: https://fulfiliorestapi.docs.apiary.io/
+    type: APIReference
+  - url: openapi/fulfil-io-openapi.yml
+    type: OpenAPI
+  - url: collections/fulfil-io.postman_collection.json
+    type: PostmanCollection
+  - url: collections/fulfil-io.opencollection.json
+    type: OpenCollection
+  description: Manage the product catalog through the product.template (product
+    groupings) and product.product (individual sellable variants / SKUs) models -
+    codes, barcodes, pricing, attributes, and their relationships.
+- aid: fulfil-io:fulfil-io-inventory-stock-api
+  name: Fulfil Inventory & Stock API
+  tags:
+  - Inventory
+  - Stock
+  - Warehouse
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://developers.fulfil.io/
+  baseURL: https://{merchant_id}.fulfil.io/api/v2
+  properties:
+  - url: https://developers.fulfil.io/
+    type: Documentation
+  - url: https://fulfiliorestapi.docs.apiary.io/
+    type: APIReference
+  - url: openapi/fulfil-io-openapi.yml
+    type: OpenAPI
+  - url: collections/fulfil-io.postman_collection.json
+    type: PostmanCollection
+  - url: collections/fulfil-io.opencollection.json
+    type: OpenCollection
+  description: Read and record inventory through the stock.move (inventory movements)
+    and stock.location (warehouses, zones, bins) models - on-hand quantities,
+    transfers, adjustments, and stock levels by location.
+- aid: fulfil-io:fulfil-io-customers-api
+  name: Fulfil Customers API
+  tags:
+  - Customers
+  - Parties
+  - Contacts
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://developers.fulfil.io/
+  baseURL: https://{merchant_id}.fulfil.io/api/v2
+  properties:
+  - url: https://developers.fulfil.io/
+    type: Documentation
+  - url: https://fulfiliorestapi.docs.apiary.io/
+    type: APIReference
+  - url: openapi/fulfil-io-openapi.yml
+    type: OpenAPI
+  - url: collections/fulfil-io.postman_collection.json
+    type: PostmanCollection
+  - url: collections/fulfil-io.opencollection.json
+    type: OpenCollection
+  description: Manage customers, suppliers, and contacts through the party.party
+    model - names, addresses, contact mechanisms (email, phone), and the relationships
+    that link parties to sales and purchase orders.
+- aid: fulfil-io:fulfil-io-shipments-api
+  name: Fulfil Shipments API
+  tags:
+  - Shipments
+  - Fulfillment
+  - Logistics
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://developers.fulfil.io/
+  baseURL: https://{merchant_id}.fulfil.io/api/v2
+  properties:
+  - url: https://developers.fulfil.io/
+    type: Documentation
+  - url: https://fulfiliorestapi.docs.apiary.io/
+    type: APIReference
+  - url: openapi/fulfil-io-openapi.yml
+    type: OpenAPI
+  - url: collections/fulfil-io.postman_collection.json
+    type: PostmanCollection
+  - url: collections/fulfil-io.opencollection.json
+    type: OpenCollection
+  description: Track and manage outbound and inbound shipments through the
+    stock.shipment.out and stock.shipment.in models - fulfillment state, carrier and
+    tracking data, and the moves that pick, pack, and ship customer orders.
+- aid: fulfil-io:fulfil-io-purchases-api
+  name: Fulfil Purchases API
+  tags:
+  - Purchases
+  - Procurement
+  - Suppliers
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://developers.fulfil.io/
+  baseURL: https://{merchant_id}.fulfil.io/api/v2
+  properties:
+  - url: https://developers.fulfil.io/
+    type: Documentation
+  - url: https://fulfiliorestapi.docs.apiary.io/
+    type: APIReference
+  - url: openapi/fulfil-io-openapi.yml
+    type: OpenAPI
+  - url: collections/fulfil-io.postman_collection.json
+    type: PostmanCollection
+  - url: collections/fulfil-io.opencollection.json
+    type: OpenCollection
+  description: Create and manage purchase orders through the purchase.purchase model -
+    supplier, order lines, receipt and invoice state - to replenish inventory and
+    supply manufacturing.
+- aid: fulfil-io:fulfil-io-manufacturing-api
+  name: Fulfil Manufacturing API
+  tags:
+  - Manufacturing
+  - Production
+  - MRP
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://docs.fulfil.io/production/
+  baseURL: https://{merchant_id}.fulfil.io/api/v2
+  properties:
+  - url: https://docs.fulfil.io/production/
+    type: Documentation
+  - url: https://fulfiliorestapi.docs.apiary.io/
+    type: APIReference
+  - url: openapi/fulfil-io-openapi.yml
+    type: OpenAPI
+  - url: collections/fulfil-io.postman_collection.json
+    type: PostmanCollection
+  - url: collections/fulfil-io.opencollection.json
+    type: OpenCollection
+  description: Manage manufacturing through the production model - production orders,
+    their inputs and outputs, bills of material, and the state transitions that turn
+    raw materials into finished goods.
+- aid: fulfil-io:fulfil-io-webhooks-api
+  name: Fulfil Webhooks API
+  tags:
+  - Webhooks
+  - Events
+  - Real Time
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://www.fulfil.io/platform/api/
+  baseURL: https://{merchant_id}.fulfil.io/api/v2
+  properties:
+  - url: https://www.fulfil.io/platform/api/
+    type: Documentation
+  - url: https://fulfiliorestapi.docs.apiary.io/
+    type: APIReference
+  - url: openapi/fulfil-io-openapi.yml
+    type: OpenAPI
+  - url: collections/fulfil-io.postman_collection.json
+    type: PostmanCollection
+  - url: collections/fulfil-io.opencollection.json
+    type: OpenCollection
+  description: Register and manage webhook subscriptions so external systems receive
+    real-time notifications when ERP events occur - orders created, inventory changes,
+    shipments dispatched. Deliveries are HTTP POSTs signed with HMAC-SHA256; a Google
+    Pub/Sub delivery option exists for high volume.
+- aid: fulfil-io:fulfil-io-model-interface-api
+  name: Fulfil Model Interface API
+  tags:
+  - Model Interface
+  - CRUD
+  - Reports
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://developers.fulfil.io/
+  baseURL: https://{merchant_id}.fulfil.io/api/v2
+  properties:
+  - url: https://developers.fulfil.io/
+    type: Documentation
+  - url: https://fulfiliorestapi.docs.apiary.io/
+    type: APIReference
+  - url: openapi/fulfil-io-openapi.yml
+    type: OpenAPI
+  - url: collections/fulfil-io.postman_collection.json
+    type: PostmanCollection
+  - url: collections/fulfil-io.opencollection.json
+    type: OpenCollection
+  description: The uniform model interface that underlies every Fulfil resource -
+    generic CRUD (GET/POST /model/{model.name}, GET/PUT/DELETE /model/{model.name}/{id}),
+    search_read, count, arbitrary method (action) calls, reports, and wizards - plus
+    the /test credential-check endpoint. Any of Fulfil's models can be driven through it.
+common:
+- type: GitHubOrganization
+  url: https://github.com/fulfilio
+- type: LinkedIn
+  url: https://www.linkedin.com/company/fulfil-io
+- type: Website
+  url: https://www.fulfil.io
+- type: Documentation
+  url: https://developers.fulfil.io/
+- type: Plans
+  url: plans/fulfil-io-plans-pricing.yml
+- type: RateLimits
+  url: rate-limits/fulfil-io-rate-limits.yml
+- type: FinOps
+  url: finops/fulfil-io-finops.yml
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com

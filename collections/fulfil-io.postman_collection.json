@@ -1,0 +1,297 @@
+{
+  "info": {
+    "name": "Fulfil REST API (v2)",
+    "description": "Fulfil is a cloud ERP and operations platform for e-commerce, DTC, and wholesale merchants. The REST API v2 exposes every ERP resource through a uniform model interface at https://{merchant_id}.fulfil.io/api/v2. Authenticate with a personal access token in the X-API-KEY header, or via OAuth 2.0. Set the merchantId and apiKey collection variables before running.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      { "key": "key", "value": "X-API-KEY", "type": "string" },
+      { "key": "value", "value": "{{apiKey}}", "type": "string" },
+      { "key": "in", "value": "header", "type": "string" }
+    ]
+  },
+  "variable": [
+    { "key": "baseUrl", "value": "https://{{merchantId}}.fulfil.io/api/v2", "type": "string" },
+    { "key": "merchantId", "value": "mystore", "type": "string" },
+    { "key": "apiKey", "value": "", "type": "string" }
+  ],
+  "item": [
+    {
+      "name": "Authentication",
+      "item": [
+        {
+          "name": "Test credentials",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": { "raw": "{{baseUrl}}/test", "host": ["{{baseUrl}}"], "path": ["test"] },
+            "description": "Verifies that the supplied API key or token is valid."
+          }
+        }
+      ]
+    },
+    {
+      "name": "Sales Orders",
+      "item": [
+        {
+          "name": "Search sales orders",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": { "raw": "{{baseUrl}}/model/sale.sale?per_page=100", "host": ["{{baseUrl}}"], "path": ["model", "sale.sale"], "query": [{ "key": "per_page", "value": "100" }] },
+            "description": "Searches sales orders (sale.sale)."
+          }
+        },
+        {
+          "name": "Create sales orders",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": { "mode": "raw", "raw": "[\n  {\n    \"party\": 1,\n    \"lines\": []\n  }\n]" },
+            "url": { "raw": "{{baseUrl}}/model/sale.sale", "host": ["{{baseUrl}}"], "path": ["model", "sale.sale"] },
+            "description": "Creates one or more sales orders (sale.sale)."
+          }
+        },
+        {
+          "name": "Search and read sales orders",
+          "request": {
+            "method": "PUT",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": { "mode": "raw", "raw": "{\n  \"filter\": [[\"state\", \"=\", \"confirmed\"]],\n  \"fields\": [\"reference\", \"party\", \"total_amount\", \"state\"],\n  \"limit\": 100\n}" },
+            "url": { "raw": "{{baseUrl}}/model/sale.sale/search_read", "host": ["{{baseUrl}}"], "path": ["model", "sale.sale", "search_read"] },
+            "description": "Search and read sales orders in a single call."
+          }
+        }
+      ]
+    },
+    {
+      "name": "Products & Variants",
+      "item": [
+        {
+          "name": "Search product templates",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": { "raw": "{{baseUrl}}/model/product.template?per_page=100", "host": ["{{baseUrl}}"], "path": ["model", "product.template"], "query": [{ "key": "per_page", "value": "100" }] },
+            "description": "Searches product templates (product.template)."
+          }
+        },
+        {
+          "name": "Search product variants",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": { "raw": "{{baseUrl}}/model/product.product?per_page=100", "host": ["{{baseUrl}}"], "path": ["model", "product.product"], "query": [{ "key": "per_page", "value": "100" }] },
+            "description": "Searches product variants / SKUs (product.product)."
+          }
+        },
+        {
+          "name": "Search and read product variants",
+          "request": {
+            "method": "PUT",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": { "mode": "raw", "raw": "{\n  \"filter\": [[\"code\", \"ilike\", \"SKU%\"]],\n  \"fields\": [\"code\", \"barcode\", \"list_price\"],\n  \"limit\": 100\n}" },
+            "url": { "raw": "{{baseUrl}}/model/product.product/search_read", "host": ["{{baseUrl}}"], "path": ["model", "product.product", "search_read"] },
+            "description": "Search and read product variants (product.product)."
+          }
+        }
+      ]
+    },
+    {
+      "name": "Inventory & Stock",
+      "item": [
+        {
+          "name": "Search stock moves",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": { "raw": "{{baseUrl}}/model/stock.move?per_page=100", "host": ["{{baseUrl}}"], "path": ["model", "stock.move"], "query": [{ "key": "per_page", "value": "100" }] },
+            "description": "Searches inventory movements (stock.move)."
+          }
+        },
+        {
+          "name": "Search stock locations",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": { "raw": "{{baseUrl}}/model/stock.location", "host": ["{{baseUrl}}"], "path": ["model", "stock.location"] },
+            "description": "Searches warehouses, zones, and bins (stock.location)."
+          }
+        }
+      ]
+    },
+    {
+      "name": "Customers",
+      "item": [
+        {
+          "name": "Search parties",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": { "raw": "{{baseUrl}}/model/party.party?per_page=100", "host": ["{{baseUrl}}"], "path": ["model", "party.party"], "query": [{ "key": "per_page", "value": "100" }] },
+            "description": "Searches parties (party.party) - customers, suppliers, contacts."
+          }
+        },
+        {
+          "name": "Create parties",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": { "mode": "raw", "raw": "[\n  {\n    \"name\": \"Acme Corp\"\n  }\n]" },
+            "url": { "raw": "{{baseUrl}}/model/party.party", "host": ["{{baseUrl}}"], "path": ["model", "party.party"] },
+            "description": "Creates one or more parties (party.party)."
+          }
+        }
+      ]
+    },
+    {
+      "name": "Shipments",
+      "item": [
+        {
+          "name": "Search outbound shipments",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": { "raw": "{{baseUrl}}/model/stock.shipment.out?per_page=100", "host": ["{{baseUrl}}"], "path": ["model", "stock.shipment.out"], "query": [{ "key": "per_page", "value": "100" }] },
+            "description": "Searches customer (outbound) shipments (stock.shipment.out)."
+          }
+        },
+        {
+          "name": "Search inbound shipments",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": { "raw": "{{baseUrl}}/model/stock.shipment.in?per_page=100", "host": ["{{baseUrl}}"], "path": ["model", "stock.shipment.in"], "query": [{ "key": "per_page", "value": "100" }] },
+            "description": "Searches supplier (inbound) shipments / receipts (stock.shipment.in)."
+          }
+        }
+      ]
+    },
+    {
+      "name": "Purchases",
+      "item": [
+        {
+          "name": "Search purchase orders",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": { "raw": "{{baseUrl}}/model/purchase.purchase?per_page=100", "host": ["{{baseUrl}}"], "path": ["model", "purchase.purchase"], "query": [{ "key": "per_page", "value": "100" }] },
+            "description": "Searches purchase orders (purchase.purchase)."
+          }
+        },
+        {
+          "name": "Create purchase orders",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": { "mode": "raw", "raw": "[\n  {\n    \"party\": 1,\n    \"lines\": []\n  }\n]" },
+            "url": { "raw": "{{baseUrl}}/model/purchase.purchase", "host": ["{{baseUrl}}"], "path": ["model", "purchase.purchase"] },
+            "description": "Creates one or more purchase orders (purchase.purchase)."
+          }
+        }
+      ]
+    },
+    {
+      "name": "Manufacturing",
+      "item": [
+        {
+          "name": "Search production orders",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": { "raw": "{{baseUrl}}/model/production?per_page=100", "host": ["{{baseUrl}}"], "path": ["model", "production"], "query": [{ "key": "per_page", "value": "100" }] },
+            "description": "Searches manufacturing / production orders (production)."
+          }
+        }
+      ]
+    },
+    {
+      "name": "Webhooks",
+      "item": [
+        {
+          "name": "List webhook subscriptions",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": { "raw": "{{baseUrl}}/model/webhook.webhook", "host": ["{{baseUrl}}"], "path": ["model", "webhook.webhook"] },
+            "description": "Lists registered webhook subscriptions."
+          }
+        },
+        {
+          "name": "Create a webhook subscription",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": { "mode": "raw", "raw": "[\n  {\n    \"model\": \"sale.sale\",\n    \"url\": \"https://example.com/webhooks/fulfil\"\n  }\n]" },
+            "url": { "raw": "{{baseUrl}}/model/webhook.webhook", "host": ["{{baseUrl}}"], "path": ["model", "webhook.webhook"] },
+            "description": "Registers a new webhook subscription. Deliveries are HTTP POSTs signed with HMAC-SHA256."
+          }
+        }
+      ]
+    },
+    {
+      "name": "Model Interface",
+      "item": [
+        {
+          "name": "Search records of a model",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": { "raw": "{{baseUrl}}/model/:model_name?per_page=100", "host": ["{{baseUrl}}"], "path": ["model", ":model_name"], "query": [{ "key": "per_page", "value": "100" }], "variable": [{ "key": "model_name", "value": "sale.sale" }] },
+            "description": "Searches records of any model."
+          }
+        },
+        {
+          "name": "Read a record",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": { "raw": "{{baseUrl}}/model/:model_name/:id", "host": ["{{baseUrl}}"], "path": ["model", ":model_name", ":id"], "variable": [{ "key": "model_name", "value": "sale.sale" }, { "key": "id", "value": "1" }] },
+            "description": "Retrieves a single record by id."
+          }
+        },
+        {
+          "name": "Update a record",
+          "request": {
+            "method": "PUT",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": { "mode": "raw", "raw": "{\n  \"comment\": \"Updated via API\"\n}" },
+            "url": { "raw": "{{baseUrl}}/model/:model_name/:id", "host": ["{{baseUrl}}"], "path": ["model", ":model_name", ":id"], "variable": [{ "key": "model_name", "value": "sale.sale" }, { "key": "id", "value": "1" }] },
+            "description": "Updates a single record by id."
+          }
+        },
+        {
+          "name": "Delete a record",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": { "raw": "{{baseUrl}}/model/:model_name/:id", "host": ["{{baseUrl}}"], "path": ["model", ":model_name", ":id"], "variable": [{ "key": "model_name", "value": "sale.sale" }, { "key": "id", "value": "1" }] },
+            "description": "Deletes a single record by id."
+          }
+        },
+        {
+          "name": "Search and read (any model)",
+          "request": {
+            "method": "PUT",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": { "mode": "raw", "raw": "{\n  \"filter\": [],\n  \"fields\": [\"id\"],\n  \"limit\": 100\n}" },
+            "url": { "raw": "{{baseUrl}}/model/:model_name/search_read", "host": ["{{baseUrl}}"], "path": ["model", ":model_name", "search_read"], "variable": [{ "key": "model_name", "value": "sale.sale" }] },
+            "description": "Search and read records of any model in one call."
+          }
+        },
+        {
+          "name": "Count records",
+          "request": {
+            "method": "PUT",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": { "mode": "raw", "raw": "{\n  \"filter\": []\n}" },
+            "url": { "raw": "{{baseUrl}}/model/:model_name/count", "host": ["{{baseUrl}}"], "path": ["model", ":model_name", "count"], "variable": [{ "key": "model_name", "value": "sale.sale" }] },
+            "description": "Returns the number of records matching a domain filter."
+          }
+        }
+      ]
+    }
+  ]
+}
