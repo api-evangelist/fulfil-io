@@ -1,0 +1,14 @@
+generated: '2026-07-11'
+method: searched
+probe: true
+source: https://www.fulfil.io/security/
+url: https://www.fulfil.io/security/
+certifications:
+- SOC 2
+- GDPR
+evidence:
+- source: https://www.fulfil.io/security/
+  keywords:
+  - soc 2
+  - trust center
+  - gdpr
