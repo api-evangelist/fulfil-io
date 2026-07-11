@@ -236,6 +236,8 @@ apis:
     search_read, count, arbitrary method (action) calls, reports, and wizards - plus
     the /test credential-check endpoint. Any of Fulfil's models can be driven through it.
 common:
+- type: OAuthScopes
+  url: scopes/fulfil-io-scopes.yml
 - type: GitHubOrganization
   url: https://github.com/fulfilio
 - type: LinkedIn
