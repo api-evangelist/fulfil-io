@@ -236,6 +236,8 @@ apis:
     search_read, count, arbitrary method (action) calls, reports, and wizards - plus
     the /test credential-check endpoint. Any of Fulfil's models can be driven through it.
 common:
+- type: AgenticAccess
+  url: agentic-access/fulfil-io-agentic-access.yml
 - type: TrustCenter
   url: security/fulfil-io-trust-center.yml
 - type: VulnerabilityDisclosure
