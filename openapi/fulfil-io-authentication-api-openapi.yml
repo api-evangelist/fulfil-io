@@ -1,0 +1,73 @@
+openapi: 3.0.3
+info:
+  title: Fulfil REST API (v2) Authentication API
+  description: 'Fulfil is a cloud ERP and operations platform for e-commerce, DTC, and wholesale merchants. Its REST API (v2) exposes every ERP resource through a single, uniform "model interface": each business object (sales orders, products, stock moves, parties, shipments, purchases, production, and thousands more) is a named model addressed at `/api/v2/model/{model.name}`, with generic CRUD, a `search_read` search, `count`, and the ability to call arbitrary model methods (actions), run reports, and drive wizards. Fulfil advertises 6,000+ endpoints across all models.
+
+    The base URL is per-merchant: `https://{merchant_id}.fulfil.io/api/v2`. Authentication is either a personal access token sent in the `X-API-KEY` header (or as HTTP Basic) for private integrations, or OAuth 2.0 for public apps. Use `GET /api/v2/test` to verify credentials.
+
+    Fulfil records are model-specific and dynamically typed, so request and response bodies below are represented as open JSON objects (a `Record` is an object with an integer `id` plus arbitrary model fields). This document models the generic interface plus concrete headline models; the same interface applies to any other Fulfil model by substituting its name.'
+  version: '2.0'
+  contact:
+    name: Fulfil Developer Documentation
+    url: https://developers.fulfil.io/
+  license:
+    name: Proprietary
+    url: https://www.fulfil.io/
+servers:
+- url: https://{merchant_id}.fulfil.io/api/v2
+  description: Fulfil merchant instance
+  variables:
+    merchant_id:
+      default: mystore
+      description: Your Fulfil merchant subdomain.
+security:
+- apiKeyAuth: []
+- oauth2: []
+tags:
+- name: Authentication
+  description: Verify API credentials.
+paths:
+  /test:
+    get:
+      operationId: testCredentials
+      tags:
+      - Authentication
+      summary: Test API credentials
+      description: Verifies that the supplied API key or token is valid.
+      responses:
+        '200':
+          description: Credentials are valid.
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+components:
+  schemas:
+    Error:
+      type: object
+      properties:
+        type:
+          type: string
+        message:
+          type: string
+        code:
+          type: integer
+  responses:
+    Unauthorized:
+      description: Missing or invalid credentials.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+  securitySchemes:
+    apiKeyAuth:
+      type: apiKey
+      in: header
+      name: X-API-KEY
+      description: Personal access token for private integrations, sent in the X-API-KEY header. Fulfil also accepts the token via HTTP Basic authentication.
+    oauth2:
+      type: oauth2
+      description: OAuth 2.0 authorization code flow for public apps.
+      flows:
+        authorizationCode:
+          authorizationUrl: https://{merchant_id}.fulfil.io/oauth/authorize
+          tokenUrl: https://{merchant_id}.fulfil.io/oauth/token
+          scopes: {}

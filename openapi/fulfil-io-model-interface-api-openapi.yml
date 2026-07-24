@@ -1,0 +1,344 @@
+openapi: 3.0.3
+info:
+  title: Fulfil REST API (v2) Authentication Model Interface API
+  description: 'Fulfil is a cloud ERP and operations platform for e-commerce, DTC, and wholesale merchants. Its REST API (v2) exposes every ERP resource through a single, uniform "model interface": each business object (sales orders, products, stock moves, parties, shipments, purchases, production, and thousands more) is a named model addressed at `/api/v2/model/{model.name}`, with generic CRUD, a `search_read` search, `count`, and the ability to call arbitrary model methods (actions), run reports, and drive wizards. Fulfil advertises 6,000+ endpoints across all models.
+
+    The base URL is per-merchant: `https://{merchant_id}.fulfil.io/api/v2`. Authentication is either a personal access token sent in the `X-API-KEY` header (or as HTTP Basic) for private integrations, or OAuth 2.0 for public apps. Use `GET /api/v2/test` to verify credentials.
+
+    Fulfil records are model-specific and dynamically typed, so request and response bodies below are represented as open JSON objects (a `Record` is an object with an integer `id` plus arbitrary model fields). This document models the generic interface plus concrete headline models; the same interface applies to any other Fulfil model by substituting its name.'
+  version: '2.0'
+  contact:
+    name: Fulfil Developer Documentation
+    url: https://developers.fulfil.io/
+  license:
+    name: Proprietary
+    url: https://www.fulfil.io/
+servers:
+- url: https://{merchant_id}.fulfil.io/api/v2
+  description: Fulfil merchant instance
+  variables:
+    merchant_id:
+      default: mystore
+      description: Your Fulfil merchant subdomain.
+security:
+- apiKeyAuth: []
+- oauth2: []
+tags:
+- name: Model Interface
+  description: The generic model interface applicable to any Fulfil model.
+paths:
+  /model/{model_name}:
+    parameters:
+    - $ref: '#/components/parameters/ModelName'
+    get:
+      operationId: searchModel
+      tags:
+      - Model Interface
+      summary: Search records of a model
+      description: Searches records of the given model. Accepts a domain filter, ordering, and pagination as query parameters. Returns matching record ids (and fields when requested).
+      parameters:
+      - $ref: '#/components/parameters/Filter'
+      - $ref: '#/components/parameters/Fields'
+      - $ref: '#/components/parameters/Page'
+      - $ref: '#/components/parameters/PerPage'
+      - $ref: '#/components/parameters/Order'
+      responses:
+        '200':
+          $ref: '#/components/responses/RecordList'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+    post:
+      operationId: createModelRecords
+      tags:
+      - Model Interface
+      summary: Create records of a model
+      description: Creates one or more records of the given model.
+      requestBody:
+        $ref: '#/components/requestBodies/RecordArray'
+      responses:
+        '201':
+          $ref: '#/components/responses/RecordList'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '422':
+          $ref: '#/components/responses/ValidationError'
+  /model/{model_name}/{id}:
+    parameters:
+    - $ref: '#/components/parameters/ModelName'
+    - $ref: '#/components/parameters/Id'
+    get:
+      operationId: readModelRecord
+      tags:
+      - Model Interface
+      summary: Read a record
+      description: Retrieves a single record of the given model by its id.
+      parameters:
+      - $ref: '#/components/parameters/Fields'
+      responses:
+        '200':
+          $ref: '#/components/responses/Record'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    put:
+      operationId: updateModelRecord
+      tags:
+      - Model Interface
+      summary: Update a record
+      description: Updates a single record of the given model by its id.
+      requestBody:
+        $ref: '#/components/requestBodies/Record'
+      responses:
+        '200':
+          $ref: '#/components/responses/Record'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '422':
+          $ref: '#/components/responses/ValidationError'
+    delete:
+      operationId: deleteModelRecord
+      tags:
+      - Model Interface
+      summary: Delete a record
+      description: Deletes a single record of the given model by its id.
+      responses:
+        '200':
+          description: Deletion confirmation.
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /model/{model_name}/search_read:
+    parameters:
+    - $ref: '#/components/parameters/ModelName'
+    put:
+      operationId: searchReadModel
+      tags:
+      - Model Interface
+      summary: Search and read records in one call
+      description: 'Combines search and read: accepts a domain filter, a list of fields, ordering, offset, and limit in the request body, and returns the matching records with the requested fields populated.'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SearchReadRequest'
+      responses:
+        '200':
+          $ref: '#/components/responses/RecordList'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /model/{model_name}/count:
+    parameters:
+    - $ref: '#/components/parameters/ModelName'
+    put:
+      operationId: countModel
+      tags:
+      - Model Interface
+      summary: Count records
+      description: Returns the number of records matching a domain filter.
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                filter:
+                  $ref: '#/components/schemas/Domain'
+      responses:
+        '200':
+          description: The matching record count.
+          content:
+            application/json:
+              schema:
+                type: integer
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /model/{model_name}/{method}:
+    parameters:
+    - $ref: '#/components/parameters/ModelName'
+    - name: method
+      in: path
+      required: true
+      description: Name of the model method (action) to invoke.
+      schema:
+        type: string
+    put:
+      operationId: callModelMethod
+      tags:
+      - Model Interface
+      summary: Call a model method (action)
+      description: Invokes an arbitrary method exposed by the model, passing positional arguments as a JSON array. Used for state transitions and business actions (for example confirming an order or processing a shipment).
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              type: array
+              items: {}
+      responses:
+        '200':
+          description: The method result (shape depends on the method).
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+components:
+  parameters:
+    PerPage:
+      name: per_page
+      in: query
+      required: false
+      description: Number of records per page.
+      schema:
+        type: integer
+        default: 100
+    Filter:
+      name: filter
+      in: query
+      required: false
+      description: A Fulfil domain filter (JSON-encoded list of clauses).
+      schema:
+        type: string
+    Order:
+      name: order
+      in: query
+      required: false
+      description: Sort order, for example "id DESC".
+      schema:
+        type: string
+    Page:
+      name: page
+      in: query
+      required: false
+      description: Page number for pagination.
+      schema:
+        type: integer
+        default: 1
+    Id:
+      name: id
+      in: path
+      required: true
+      description: The integer id of the record.
+      schema:
+        type: integer
+    Fields:
+      name: fields
+      in: query
+      required: false
+      description: Comma-separated list of fields to return.
+      schema:
+        type: string
+    ModelName:
+      name: model_name
+      in: path
+      required: true
+      description: The Fulfil model name (for example sale.sale, product.product, product.template, stock.move, party.party, stock.shipment.out, purchase.purchase, production).
+      schema:
+        type: string
+  responses:
+    ValidationError:
+      description: The request payload failed validation.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    Record:
+      description: A single record.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Record'
+    NotFound:
+      description: The requested record was not found.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    Unauthorized:
+      description: Missing or invalid credentials.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    RecordList:
+      description: A list of records.
+      content:
+        application/json:
+          schema:
+            type: array
+            items:
+              $ref: '#/components/schemas/Record'
+  requestBodies:
+    RecordArray:
+      required: true
+      content:
+        application/json:
+          schema:
+            type: array
+            items:
+              $ref: '#/components/schemas/Record'
+    Record:
+      required: true
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Record'
+  schemas:
+    Domain:
+      type: array
+      description: A Fulfil domain filter - a list of clauses such as ["name", "ilike", "iphone"] combined with logical operators.
+      items: {}
+    Error:
+      type: object
+      properties:
+        type:
+          type: string
+        message:
+          type: string
+        code:
+          type: integer
+    Record:
+      type: object
+      description: A Fulfil record. Fields vary by model; every persisted record has an integer id. Additional model-specific fields are permitted.
+      properties:
+        id:
+          type: integer
+      additionalProperties: true
+    SearchReadRequest:
+      type: object
+      properties:
+        filter:
+          $ref: '#/components/schemas/Domain'
+        fields:
+          type: array
+          items:
+            type: string
+        order:
+          type: array
+          items:
+            type: array
+            items:
+              type: string
+        offset:
+          type: integer
+          default: 0
+        limit:
+          type: integer
+          default: 100
+  securitySchemes:
+    apiKeyAuth:
+      type: apiKey
+      in: header
+      name: X-API-KEY
+      description: Personal access token for private integrations, sent in the X-API-KEY header. Fulfil also accepts the token via HTTP Basic authentication.
+    oauth2:
+      type: oauth2
+      description: OAuth 2.0 authorization code flow for public apps.
+      flows:
+        authorizationCode:
+          authorizationUrl: https://{merchant_id}.fulfil.io/oauth/authorize
+          tokenUrl: https://{merchant_id}.fulfil.io/oauth/token
+          scopes: {}

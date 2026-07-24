@@ -1,0 +1,229 @@
+openapi: 3.0.3
+info:
+  title: Fulfil REST API (v2) Authentication Products & Variants API
+  description: 'Fulfil is a cloud ERP and operations platform for e-commerce, DTC, and wholesale merchants. Its REST API (v2) exposes every ERP resource through a single, uniform "model interface": each business object (sales orders, products, stock moves, parties, shipments, purchases, production, and thousands more) is a named model addressed at `/api/v2/model/{model.name}`, with generic CRUD, a `search_read` search, `count`, and the ability to call arbitrary model methods (actions), run reports, and drive wizards. Fulfil advertises 6,000+ endpoints across all models.
+
+    The base URL is per-merchant: `https://{merchant_id}.fulfil.io/api/v2`. Authentication is either a personal access token sent in the `X-API-KEY` header (or as HTTP Basic) for private integrations, or OAuth 2.0 for public apps. Use `GET /api/v2/test` to verify credentials.
+
+    Fulfil records are model-specific and dynamically typed, so request and response bodies below are represented as open JSON objects (a `Record` is an object with an integer `id` plus arbitrary model fields). This document models the generic interface plus concrete headline models; the same interface applies to any other Fulfil model by substituting its name.'
+  version: '2.0'
+  contact:
+    name: Fulfil Developer Documentation
+    url: https://developers.fulfil.io/
+  license:
+    name: Proprietary
+    url: https://www.fulfil.io/
+servers:
+- url: https://{merchant_id}.fulfil.io/api/v2
+  description: Fulfil merchant instance
+  variables:
+    merchant_id:
+      default: mystore
+      description: Your Fulfil merchant subdomain.
+security:
+- apiKeyAuth: []
+- oauth2: []
+tags:
+- name: Products & Variants
+  description: Catalog via product.template and product.product models.
+paths:
+  /model/product.template:
+    get:
+      operationId: searchProductTemplates
+      tags:
+      - Products & Variants
+      summary: Search product templates
+      description: Searches product templates (product.template) - the groupings that own variants.
+      parameters:
+      - $ref: '#/components/parameters/Filter'
+      - $ref: '#/components/parameters/Fields'
+      - $ref: '#/components/parameters/Page'
+      - $ref: '#/components/parameters/PerPage'
+      responses:
+        '200':
+          $ref: '#/components/responses/RecordList'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+    post:
+      operationId: createProductTemplates
+      tags:
+      - Products & Variants
+      summary: Create product templates
+      description: Creates one or more product templates (product.template).
+      requestBody:
+        $ref: '#/components/requestBodies/RecordArray'
+      responses:
+        '201':
+          $ref: '#/components/responses/RecordList'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '422':
+          $ref: '#/components/responses/ValidationError'
+  /model/product.product:
+    get:
+      operationId: searchProductVariants
+      tags:
+      - Products & Variants
+      summary: Search product variants
+      description: Searches product variants / SKUs (product.product) - the individual sellable items.
+      parameters:
+      - $ref: '#/components/parameters/Filter'
+      - $ref: '#/components/parameters/Fields'
+      - $ref: '#/components/parameters/Page'
+      - $ref: '#/components/parameters/PerPage'
+      responses:
+        '200':
+          $ref: '#/components/responses/RecordList'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+    post:
+      operationId: createProductVariants
+      tags:
+      - Products & Variants
+      summary: Create product variants
+      description: Creates one or more product variants (product.product).
+      requestBody:
+        $ref: '#/components/requestBodies/RecordArray'
+      responses:
+        '201':
+          $ref: '#/components/responses/RecordList'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '422':
+          $ref: '#/components/responses/ValidationError'
+  /model/product.product/search_read:
+    put:
+      operationId: searchReadProductVariants
+      tags:
+      - Products & Variants
+      summary: Search and read product variants
+      description: Search and read product variants (product.product) in a single call.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SearchReadRequest'
+      responses:
+        '200':
+          $ref: '#/components/responses/RecordList'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+components:
+  parameters:
+    PerPage:
+      name: per_page
+      in: query
+      required: false
+      description: Number of records per page.
+      schema:
+        type: integer
+        default: 100
+    Filter:
+      name: filter
+      in: query
+      required: false
+      description: A Fulfil domain filter (JSON-encoded list of clauses).
+      schema:
+        type: string
+    Fields:
+      name: fields
+      in: query
+      required: false
+      description: Comma-separated list of fields to return.
+      schema:
+        type: string
+    Page:
+      name: page
+      in: query
+      required: false
+      description: Page number for pagination.
+      schema:
+        type: integer
+        default: 1
+  responses:
+    ValidationError:
+      description: The request payload failed validation.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    Unauthorized:
+      description: Missing or invalid credentials.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    RecordList:
+      description: A list of records.
+      content:
+        application/json:
+          schema:
+            type: array
+            items:
+              $ref: '#/components/schemas/Record'
+  requestBodies:
+    RecordArray:
+      required: true
+      content:
+        application/json:
+          schema:
+            type: array
+            items:
+              $ref: '#/components/schemas/Record'
+  schemas:
+    Domain:
+      type: array
+      description: A Fulfil domain filter - a list of clauses such as ["name", "ilike", "iphone"] combined with logical operators.
+      items: {}
+    Error:
+      type: object
+      properties:
+        type:
+          type: string
+        message:
+          type: string
+        code:
+          type: integer
+    Record:
+      type: object
+      description: A Fulfil record. Fields vary by model; every persisted record has an integer id. Additional model-specific fields are permitted.
+      properties:
+        id:
+          type: integer
+      additionalProperties: true
+    SearchReadRequest:
+      type: object
+      properties:
+        filter:
+          $ref: '#/components/schemas/Domain'
+        fields:
+          type: array
+          items:
+            type: string
+        order:
+          type: array
+          items:
+            type: array
+            items:
+              type: string
+        offset:
+          type: integer
+          default: 0
+        limit:
+          type: integer
+          default: 100
+  securitySchemes:
+    apiKeyAuth:
+      type: apiKey
+      in: header
+      name: X-API-KEY
+      description: Personal access token for private integrations, sent in the X-API-KEY header. Fulfil also accepts the token via HTTP Basic authentication.
+    oauth2:
+      type: oauth2
+      description: OAuth 2.0 authorization code flow for public apps.
+      flows:
+        authorizationCode:
+          authorizationUrl: https://{merchant_id}.fulfil.io/oauth/authorize
+          tokenUrl: https://{merchant_id}.fulfil.io/oauth/token
+          scopes: {}
