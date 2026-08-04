@@ -1,0 +1,32 @@
+{
+  "provider": "fulfil-io",
+  "sources": [
+    "fulfil-io-authentication-api-openapi.yml",
+    "fulfil-io-customers-api-openapi.yml",
+    "fulfil-io-inventory-stock-api-openapi.yml",
+    "fulfil-io-manufacturing-api-openapi.yml",
+    "fulfil-io-model-interface-api-openapi.yml",
+    "fulfil-io-products-variants-api-openapi.yml",
+    "fulfil-io-purchases-api-openapi.yml",
+    "fulfil-io-sales-orders-api-openapi.yml",
+    "fulfil-io-shipments-api-openapi.yml",
+    "fulfil-io-webhooks-api-openapi.yml"
+  ],
+  "outputs": [
+    "fulfil-io-authentication-api-openapi.yml",
+    "fulfil-io-customers-api-openapi.yml",
+    "fulfil-io-inventory-stock-api-openapi.yml",
+    "fulfil-io-manufacturing-api-openapi.yml",
+    "fulfil-io-model-interface-api-openapi.yml",
+    "fulfil-io-products-variants-api-openapi.yml",
+    "fulfil-io-purchases-api-openapi.yml",
+    "fulfil-io-sales-orders-api-openapi.yml",
+    "fulfil-io-shipments-api-openapi.yml",
+    "fulfil-io-webhooks-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}
