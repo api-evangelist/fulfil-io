@@ -1,0 +1,2010 @@
+{
+  "item": [
+    {
+      "id": "33753299-b0e2-472c-8ce2-c754856eb936",
+      "name": "Model Interface",
+      "description": {
+        "content": "The generic model interface applicable to any Fulfil model.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "50bbe746-3108-4b81-98a8-1a5cbd67c99f",
+          "name": "Search records of a model",
+          "request": {
+            "name": "Search records of a model",
+            "description": {
+              "content": "Searches records of the given model. Accepts a domain filter, ordering, and pagination as query parameters. Returns matching record ids (and fields when requested).",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "model",
+                ":model_name"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "filter",
+                  "value": "<string>",
+                  "description": "A Fulfil domain filter (JSON-encoded list of clauses)."
+                },
+                {
+                  "disabled": false,
+                  "key": "fields",
+                  "value": "<string>",
+                  "description": "Comma-separated list of fields to return."
+                },
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "1",
+                  "description": "Page number for pagination."
+                },
+                {
+                  "disabled": false,
+                  "key": "per_page",
+                  "value": "100",
+                  "description": "Number of records per page."
+                },
+                {
+                  "disabled": false,
+                  "key": "order",
+                  "value": "<string>",
+                  "description": "Sort order, for example \"id DESC\"."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "model_name",
+                  "description": "(Required) The Fulfil model name (for example sale.sale, product.product, product.template, stock.move, party.party, stock.shipment.out, purchase.purchase, production)."
+                },
+                {
+                  "description": "Your Fulfil merchant subdomain.",
+                  "type": "any",
+                  "value": "{{merchant_id}}",
+                  "key": "merchant_id"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "35e8ab4c-a3a7-4853-a6c3-a250a006b918",
+              "name": "A list of records.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "model",
+                    ":model_name"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "filter",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "fields",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "per_page",
+                      "value": "100"
+                    },
+                    {
+                      "key": "order",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "model_name",
+                      "description": "(Required) The Fulfil model name (for example sale.sale, product.product, product.template, stock.move, party.party, stock.shipment.out, purchase.purchase, production)."
+                    },
+                    {
+                      "description": "Your Fulfil merchant subdomain.",
+                      "type": "any",
+                      "value": "{{merchant_id}}",
+                      "key": "merchant_id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-KEY",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"id\": 1853,\n    \"key_0\": \"string\"\n  },\n  {\n    \"id\": 7196,\n    \"key_0\": 9619.154407502241,\n    \"key_1\": \"string\",\n    \"key_2\": false\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "e3d5caf6-073c-426b-877e-163db6fa0ab7",
+              "name": "Missing or invalid credentials.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "model",
+                    ":model_name"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "filter",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "fields",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "per_page",
+                      "value": "100"
+                    },
+                    {
+                      "key": "order",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "model_name",
+                      "description": "(Required) The Fulfil model name (for example sale.sale, product.product, product.template, stock.move, party.party, stock.shipment.out, purchase.purchase, production)."
+                    },
+                    {
+                      "description": "Your Fulfil merchant subdomain.",
+                      "type": "any",
+                      "value": "{{merchant_id}}",
+                      "key": "merchant_id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-KEY",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"string\",\n  \"message\": \"string\",\n  \"code\": 3126\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "b6ee8baa-8198-4cb9-a4be-a929ade1a1c2",
+          "name": "Create records of a model",
+          "request": {
+            "name": "Create records of a model",
+            "description": {
+              "content": "Creates one or more records of the given model.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "model",
+                ":model_name"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "model_name",
+                  "description": "(Required) The Fulfil model name (for example sale.sale, product.product, product.template, stock.move, party.party, stock.shipment.out, purchase.purchase, production)."
+                },
+                {
+                  "description": "Your Fulfil merchant subdomain.",
+                  "type": "any",
+                  "value": "{{merchant_id}}",
+                  "key": "merchant_id"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "[\n  {\n    \"id\": \"<integer>\"\n  },\n  {\n    \"id\": \"<integer>\",\n    \"key_0\": 6086,\n    \"key_1\": \"string\",\n    \"key_2\": 3196\n  }\n]",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "55045729-1320-445f-a6e9-1754ccca1987",
+              "name": "A list of records.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "model",
+                    ":model_name"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "model_name",
+                      "description": "(Required) The Fulfil model name (for example sale.sale, product.product, product.template, stock.move, party.party, stock.shipment.out, purchase.purchase, production)."
+                    },
+                    {
+                      "description": "Your Fulfil merchant subdomain.",
+                      "type": "any",
+                      "value": "{{merchant_id}}",
+                      "key": "merchant_id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-KEY",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"id\": \"<integer>\",\n    \"key_0\": 7420.2007186000155\n  },\n  {\n    \"id\": \"<integer>\",\n    \"key_0\": 2678.545795209659\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "39b3662b-3604-4087-9bf6-bcda0f99e78b",
+              "name": "Missing or invalid credentials.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "model",
+                    ":model_name"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "model_name",
+                      "description": "(Required) The Fulfil model name (for example sale.sale, product.product, product.template, stock.move, party.party, stock.shipment.out, purchase.purchase, production)."
+                    },
+                    {
+                      "description": "Your Fulfil merchant subdomain.",
+                      "type": "any",
+                      "value": "{{merchant_id}}",
+                      "key": "merchant_id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-KEY",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"string\",\n  \"message\": \"string\",\n  \"code\": 3126\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "237b6a59-608d-4895-8389-38170fedaded",
+              "name": "The request payload failed validation.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "model",
+                    ":model_name"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "model_name",
+                      "description": "(Required) The Fulfil model name (for example sale.sale, product.product, product.template, stock.move, party.party, stock.shipment.out, purchase.purchase, production)."
+                    },
+                    {
+                      "description": "Your Fulfil merchant subdomain.",
+                      "type": "any",
+                      "value": "{{merchant_id}}",
+                      "key": "merchant_id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-KEY",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"string\",\n  \"message\": \"string\",\n  \"code\": 3126\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "08ae48fa-960a-43a5-a684-d7066ca8b07f",
+          "name": "Read a record",
+          "request": {
+            "name": "Read a record",
+            "description": {
+              "content": "Retrieves a single record of the given model by its id.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "model",
+                ":model_name",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "fields",
+                  "value": "<string>",
+                  "description": "Comma-separated list of fields to return."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "model_name",
+                  "description": "(Required) The Fulfil model name (for example sale.sale, product.product, product.template, stock.move, party.party, stock.shipment.out, purchase.purchase, production)."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "id",
+                  "description": "(Required) The integer id of the record."
+                },
+                {
+                  "description": "Your Fulfil merchant subdomain.",
+                  "type": "any",
+                  "value": "{{merchant_id}}",
+                  "key": "merchant_id"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "598efe72-3e68-4308-85c4-bf5e3a900696",
+              "name": "A single record.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "model",
+                    ":model_name",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "fields",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "model_name",
+                      "description": "(Required) The Fulfil model name (for example sale.sale, product.product, product.template, stock.move, party.party, stock.shipment.out, purchase.purchase, production)."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) The integer id of the record."
+                    },
+                    {
+                      "description": "Your Fulfil merchant subdomain.",
+                      "type": "any",
+                      "value": "{{merchant_id}}",
+                      "key": "merchant_id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-KEY",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"<integer>\",\n  \"key_0\": false\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "c7bb72d4-3cb3-4da0-8e31-6dd71a854d1b",
+              "name": "Missing or invalid credentials.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "model",
+                    ":model_name",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "fields",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "model_name",
+                      "description": "(Required) The Fulfil model name (for example sale.sale, product.product, product.template, stock.move, party.party, stock.shipment.out, purchase.purchase, production)."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) The integer id of the record."
+                    },
+                    {
+                      "description": "Your Fulfil merchant subdomain.",
+                      "type": "any",
+                      "value": "{{merchant_id}}",
+                      "key": "merchant_id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-KEY",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"string\",\n  \"message\": \"string\",\n  \"code\": 3126\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "94e9f602-f244-4dc3-9529-d933059214d1",
+              "name": "The requested record was not found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "model",
+                    ":model_name",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "fields",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "model_name",
+                      "description": "(Required) The Fulfil model name (for example sale.sale, product.product, product.template, stock.move, party.party, stock.shipment.out, purchase.purchase, production)."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) The integer id of the record."
+                    },
+                    {
+                      "description": "Your Fulfil merchant subdomain.",
+                      "type": "any",
+                      "value": "{{merchant_id}}",
+                      "key": "merchant_id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-KEY",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"string\",\n  \"message\": \"string\",\n  \"code\": 3126\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "6f8990ae-a314-4a75-99c6-49ed82fb5a8d",
+          "name": "Update a record",
+          "request": {
+            "name": "Update a record",
+            "description": {
+              "content": "Updates a single record of the given model by its id.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "model",
+                ":model_name",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "model_name",
+                  "description": "(Required) The Fulfil model name (for example sale.sale, product.product, product.template, stock.move, party.party, stock.shipment.out, purchase.purchase, production)."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "id",
+                  "description": "(Required) The integer id of the record."
+                },
+                {
+                  "description": "Your Fulfil merchant subdomain.",
+                  "type": "any",
+                  "value": "{{merchant_id}}",
+                  "key": "merchant_id"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"id\": \"<integer>\",\n  \"key_0\": 9254\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "dcb5e0ac-d6f1-4501-b51d-18286b8b4144",
+              "name": "A single record.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "model",
+                    ":model_name",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "model_name",
+                      "description": "(Required) The Fulfil model name (for example sale.sale, product.product, product.template, stock.move, party.party, stock.shipment.out, purchase.purchase, production)."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) The integer id of the record."
+                    },
+                    {
+                      "description": "Your Fulfil merchant subdomain.",
+                      "type": "any",
+                      "value": "{{merchant_id}}",
+                      "key": "merchant_id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-KEY",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"<integer>\",\n  \"key_0\": false\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "46838a9b-825f-4ba1-a232-2a8d3f3b53eb",
+              "name": "Missing or invalid credentials.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "model",
+                    ":model_name",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "model_name",
+                      "description": "(Required) The Fulfil model name (for example sale.sale, product.product, product.template, stock.move, party.party, stock.shipment.out, purchase.purchase, production)."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) The integer id of the record."
+                    },
+                    {
+                      "description": "Your Fulfil merchant subdomain.",
+                      "type": "any",
+                      "value": "{{merchant_id}}",
+                      "key": "merchant_id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-KEY",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"string\",\n  \"message\": \"string\",\n  \"code\": 3126\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "5e2dcf6a-ea87-43cf-9adc-aa2e4430b125",
+              "name": "The requested record was not found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "model",
+                    ":model_name",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "model_name",
+                      "description": "(Required) The Fulfil model name (for example sale.sale, product.product, product.template, stock.move, party.party, stock.shipment.out, purchase.purchase, production)."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) The integer id of the record."
+                    },
+                    {
+                      "description": "Your Fulfil merchant subdomain.",
+                      "type": "any",
+                      "value": "{{merchant_id}}",
+                      "key": "merchant_id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-KEY",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"string\",\n  \"message\": \"string\",\n  \"code\": 3126\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "bf59eba3-79be-451f-9795-63c415726ee6",
+              "name": "The request payload failed validation.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "model",
+                    ":model_name",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "model_name",
+                      "description": "(Required) The Fulfil model name (for example sale.sale, product.product, product.template, stock.move, party.party, stock.shipment.out, purchase.purchase, production)."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) The integer id of the record."
+                    },
+                    {
+                      "description": "Your Fulfil merchant subdomain.",
+                      "type": "any",
+                      "value": "{{merchant_id}}",
+                      "key": "merchant_id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-KEY",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {}
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"string\",\n  \"message\": \"string\",\n  \"code\": 3126\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "c22a8bb2-36b5-4ea3-a882-b564235c17d3",
+          "name": "Delete a record",
+          "request": {
+            "name": "Delete a record",
+            "description": {
+              "content": "Deletes a single record of the given model by its id.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "model",
+                ":model_name",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "model_name",
+                  "description": "(Required) The Fulfil model name (for example sale.sale, product.product, product.template, stock.move, party.party, stock.shipment.out, purchase.purchase, production)."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "id",
+                  "description": "(Required) The integer id of the record."
+                },
+                {
+                  "description": "Your Fulfil merchant subdomain.",
+                  "type": "any",
+                  "value": "{{merchant_id}}",
+                  "key": "merchant_id"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "1a84dd4d-b255-4bcf-8288-da0f614bed84",
+              "name": "Deletion confirmation.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "model",
+                    ":model_name",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "model_name",
+                      "description": "(Required) The Fulfil model name (for example sale.sale, product.product, product.template, stock.move, party.party, stock.shipment.out, purchase.purchase, production)."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) The integer id of the record."
+                    },
+                    {
+                      "description": "Your Fulfil merchant subdomain.",
+                      "type": "any",
+                      "value": "{{merchant_id}}",
+                      "key": "merchant_id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-KEY",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "c25b6a9a-c8f0-467d-9c6f-41a52eb0ea67",
+              "name": "Missing or invalid credentials.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "model",
+                    ":model_name",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "model_name",
+                      "description": "(Required) The Fulfil model name (for example sale.sale, product.product, product.template, stock.move, party.party, stock.shipment.out, purchase.purchase, production)."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) The integer id of the record."
+                    },
+                    {
+                      "description": "Your Fulfil merchant subdomain.",
+                      "type": "any",
+                      "value": "{{merchant_id}}",
+                      "key": "merchant_id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-KEY",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"string\",\n  \"message\": \"string\",\n  \"code\": 3126\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "604d8cb1-5d07-4e21-8d99-b3de794a8794",
+              "name": "The requested record was not found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "model",
+                    ":model_name",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "model_name",
+                      "description": "(Required) The Fulfil model name (for example sale.sale, product.product, product.template, stock.move, party.party, stock.shipment.out, purchase.purchase, production)."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) The integer id of the record."
+                    },
+                    {
+                      "description": "Your Fulfil merchant subdomain.",
+                      "type": "any",
+                      "value": "{{merchant_id}}",
+                      "key": "merchant_id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-KEY",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"string\",\n  \"message\": \"string\",\n  \"code\": 3126\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "dca87a7d-1dd9-4dd8-ac58-cfaa72b4bbe6",
+          "name": "Search and read records in one call",
+          "request": {
+            "name": "Search and read records in one call",
+            "description": {
+              "content": "Combines search and read: accepts a domain filter, a list of fields, ordering, offset, and limit in the request body, and returns the matching records with the requested fields populated.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "model",
+                ":model_name",
+                "search_read"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "model_name",
+                  "description": "(Required) The Fulfil model name (for example sale.sale, product.product, product.template, stock.move, party.party, stock.shipment.out, purchase.purchase, production)."
+                },
+                {
+                  "description": "Your Fulfil merchant subdomain.",
+                  "type": "any",
+                  "value": "{{merchant_id}}",
+                  "key": "merchant_id"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"fields\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"order\": [\n    [\n      \"<string>\",\n      \"<string>\"\n    ],\n    [\n      \"<string>\",\n      \"<string>\"\n    ]\n  ],\n  \"offset\": 0,\n  \"limit\": 100\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "037530aa-e7bf-479f-8d66-8aebce566c06",
+              "name": "A list of records.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "model",
+                    ":model_name",
+                    "search_read"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "model_name",
+                      "description": "(Required) The Fulfil model name (for example sale.sale, product.product, product.template, stock.move, party.party, stock.shipment.out, purchase.purchase, production)."
+                    },
+                    {
+                      "description": "Your Fulfil merchant subdomain.",
+                      "type": "any",
+                      "value": "{{merchant_id}}",
+                      "key": "merchant_id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-KEY",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"fields\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"order\": [\n    [\n      \"<string>\",\n      \"<string>\"\n    ],\n    [\n      \"<string>\",\n      \"<string>\"\n    ]\n  ],\n  \"offset\": 0,\n  \"limit\": 100\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"id\": \"<integer>\",\n    \"key_0\": 7420.2007186000155\n  },\n  {\n    \"id\": \"<integer>\",\n    \"key_0\": 2678.545795209659\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "b87361f3-fcf4-4c44-ac3f-e7361bb5ad6b",
+              "name": "Missing or invalid credentials.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "model",
+                    ":model_name",
+                    "search_read"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "model_name",
+                      "description": "(Required) The Fulfil model name (for example sale.sale, product.product, product.template, stock.move, party.party, stock.shipment.out, purchase.purchase, production)."
+                    },
+                    {
+                      "description": "Your Fulfil merchant subdomain.",
+                      "type": "any",
+                      "value": "{{merchant_id}}",
+                      "key": "merchant_id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-KEY",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"fields\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"order\": [\n    [\n      \"<string>\",\n      \"<string>\"\n    ],\n    [\n      \"<string>\",\n      \"<string>\"\n    ]\n  ],\n  \"offset\": 0,\n  \"limit\": 100\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"string\",\n  \"message\": \"string\",\n  \"code\": 3126\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "665e40c7-f6b6-47cd-b81e-304f14b06ada",
+          "name": "Count records",
+          "request": {
+            "name": "Count records",
+            "description": {
+              "content": "Returns the number of records matching a domain filter.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "model",
+                ":model_name",
+                "count"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "model_name",
+                  "description": "(Required) The Fulfil model name (for example sale.sale, product.product, product.template, stock.move, party.party, stock.shipment.out, purchase.purchase, production)."
+                },
+                {
+                  "description": "Your Fulfil merchant subdomain.",
+                  "type": "any",
+                  "value": "{{merchant_id}}",
+                  "key": "merchant_id"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "42ca0429-3e38-4c74-9923-829a24e83780",
+              "name": "The matching record count.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "model",
+                    ":model_name",
+                    "count"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "model_name",
+                      "description": "(Required) The Fulfil model name (for example sale.sale, product.product, product.template, stock.move, party.party, stock.shipment.out, purchase.purchase, production)."
+                    },
+                    {
+                      "description": "Your Fulfil merchant subdomain.",
+                      "type": "any",
+                      "value": "{{merchant_id}}",
+                      "key": "merchant_id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-KEY",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "6155",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "873dea0c-a590-4bf1-ba40-f29af16ee202",
+              "name": "Missing or invalid credentials.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "model",
+                    ":model_name",
+                    "count"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "model_name",
+                      "description": "(Required) The Fulfil model name (for example sale.sale, product.product, product.template, stock.move, party.party, stock.shipment.out, purchase.purchase, production)."
+                    },
+                    {
+                      "description": "Your Fulfil merchant subdomain.",
+                      "type": "any",
+                      "value": "{{merchant_id}}",
+                      "key": "merchant_id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-KEY",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"string\",\n  \"message\": \"string\",\n  \"code\": 3126\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "9913d62d-8757-4296-aaf5-c0a81ca2afea",
+          "name": "Call a model method (action)",
+          "request": {
+            "name": "Call a model method (action)",
+            "description": {
+              "content": "Invokes an arbitrary method exposed by the model, passing positional arguments as a JSON array. Used for state transitions and business actions (for example confirming an order or processing a shipment).",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "model",
+                ":model_name",
+                ":method"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "model_name",
+                  "description": "(Required) The Fulfil model name (for example sale.sale, product.product, product.template, stock.move, party.party, stock.shipment.out, purchase.purchase, production)."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "method",
+                  "description": "(Required) Name of the model method (action) to invoke."
+                },
+                {
+                  "description": "Your Fulfil merchant subdomain.",
+                  "type": "any",
+                  "value": "{{merchant_id}}",
+                  "key": "merchant_id"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "[]",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "8e575bf4-b41c-4de4-a8d8-a61254296466",
+              "name": "The method result (shape depends on the method).",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "model",
+                    ":model_name",
+                    ":method"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "model_name",
+                      "description": "(Required) The Fulfil model name (for example sale.sale, product.product, product.template, stock.move, party.party, stock.shipment.out, purchase.purchase, production)."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "method",
+                      "description": "(Required) Name of the model method (action) to invoke."
+                    },
+                    {
+                      "description": "Your Fulfil merchant subdomain.",
+                      "type": "any",
+                      "value": "{{merchant_id}}",
+                      "key": "merchant_id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-KEY",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "[]",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "b712f443-dc6c-4a85-b836-b7c6055b6d78",
+              "name": "Missing or invalid credentials.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "model",
+                    ":model_name",
+                    ":method"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "model_name",
+                      "description": "(Required) The Fulfil model name (for example sale.sale, product.product, product.template, stock.move, party.party, stock.shipment.out, purchase.purchase, production)."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "method",
+                      "description": "(Required) Name of the model method (action) to invoke."
+                    },
+                    {
+                      "description": "Your Fulfil merchant subdomain.",
+                      "type": "any",
+                      "value": "{{merchant_id}}",
+                      "key": "merchant_id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-KEY",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "[]",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"string\",\n  \"message\": \"string\",\n  \"code\": 3126\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "description": {
+        "content": "Your Fulfil merchant subdomain.",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "mystore",
+      "key": "merchant_id"
+    },
+    {
+      "type": "string",
+      "value": "https://{{merchant_id}}.fulfil.io/api/v2",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "X-API-KEY"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "34142cda-43ac-41b9-aef1-20bbaa9f5df3",
+    "name": "Fulfil REST API (v2) Authentication Model Interface API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Fulfil is a cloud ERP and operations platform for e-commerce, DTC, and wholesale merchants. Its REST API (v2) exposes every ERP resource through a single, uniform \"model interface\": each business object (sales orders, products, stock moves, parties, shipments, purchases, production, and thousands more) is a named model addressed at `/api/v2/model/{model.name}`, with generic CRUD, a `search_read` search, `count`, and the ability to call arbitrary model methods (actions), run reports, and drive wizards. Fulfil advertises 6,000+ endpoints across all models.\nThe base URL is per-merchant: `https://{merchant_id}.fulfil.io/api/v2`. Authentication is either a personal access token sent in the `X-API-KEY` header (or as HTTP Basic) for private integrations, or OAuth 2.0 for public apps. Use `GET /api/v2/test` to verify credentials.\nFulfil records are model-specific and dynamically typed, so request and response bodies below are represented as open JSON objects (a `Record` is an object with an integer `id` plus arbitrary model fields). This document models the generic interface plus concrete headline models; the same interface applies to any other Fulfil model by substituting its name.\n\nContact Support:\n Name: Fulfil Developer Documentation",
+      "type": "text/plain"
+    }
+  }
+}

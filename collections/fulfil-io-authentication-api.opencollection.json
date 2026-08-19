@@ -1,0 +1,37 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Fulfil REST API (v2) Authentication API",
+    "version": "2.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "X-API-KEY",
+      "value": "{{X-API-KEY}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Authentication",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Test API credentials",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{merchant_id}.fulfil.io/api/v2/test"
+          },
+          "docs": "Verifies that the supplied API key or token is valid."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

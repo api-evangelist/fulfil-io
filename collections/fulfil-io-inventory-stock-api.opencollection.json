@@ -1,0 +1,115 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Fulfil REST API (v2) Authentication Inventory & Stock API",
+    "version": "2.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "X-API-KEY",
+      "value": "{{X-API-KEY}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Inventory & Stock",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Search stock moves",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{merchant_id}.fulfil.io/api/v2/model/stock.move",
+            "params": [
+              {
+                "name": "filter",
+                "value": "",
+                "type": "query",
+                "description": "A Fulfil domain filter (JSON-encoded list of clauses)."
+              },
+              {
+                "name": "fields",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated list of fields to return."
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Page number for pagination."
+              },
+              {
+                "name": "per_page",
+                "value": "",
+                "type": "query",
+                "description": "Number of records per page."
+              }
+            ]
+          },
+          "docs": "Searches inventory movements (stock.move) - transfers, adjustments, and shipment moves."
+        },
+        {
+          "info": {
+            "name": "Create stock moves",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{merchant_id}.fulfil.io/api/v2/model/stock.move",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates one or more inventory movements (stock.move)."
+        },
+        {
+          "info": {
+            "name": "Search stock locations",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{merchant_id}.fulfil.io/api/v2/model/stock.location",
+            "params": [
+              {
+                "name": "filter",
+                "value": "",
+                "type": "query",
+                "description": "A Fulfil domain filter (JSON-encoded list of clauses)."
+              },
+              {
+                "name": "fields",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated list of fields to return."
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Page number for pagination."
+              },
+              {
+                "name": "per_page",
+                "value": "",
+                "type": "query",
+                "description": "Number of records per page."
+              }
+            ]
+          },
+          "docs": "Searches warehouses, zones, and bins (stock.location)."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

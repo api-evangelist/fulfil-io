@@ -1,0 +1,466 @@
+{
+  "item": [
+    {
+      "id": "7bfd42a3-27f6-452a-b887-67779770f60e",
+      "name": "Shipments",
+      "description": {
+        "content": "Fulfillment via stock.shipment.out and stock.shipment.in models.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "e52550d2-c1ac-417b-a652-3e9c341b85d6",
+          "name": "Search outbound shipments",
+          "request": {
+            "name": "Search outbound shipments",
+            "description": {
+              "content": "Searches customer (outbound) shipments (stock.shipment.out).",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "model",
+                "stock.shipment.out"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "filter",
+                  "value": "<string>",
+                  "description": "A Fulfil domain filter (JSON-encoded list of clauses)."
+                },
+                {
+                  "disabled": false,
+                  "key": "fields",
+                  "value": "<string>",
+                  "description": "Comma-separated list of fields to return."
+                },
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "1",
+                  "description": "Page number for pagination."
+                },
+                {
+                  "disabled": false,
+                  "key": "per_page",
+                  "value": "100",
+                  "description": "Number of records per page."
+                }
+              ],
+              "variable": [
+                {
+                  "description": "Your Fulfil merchant subdomain.",
+                  "type": "any",
+                  "value": "{{merchant_id}}",
+                  "key": "merchant_id"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "e8c90f31-9826-4506-a7a0-5feb2ee49978",
+              "name": "A list of records.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "model",
+                    "stock.shipment.out"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "filter",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "fields",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "per_page",
+                      "value": "100"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": "Your Fulfil merchant subdomain.",
+                      "type": "any",
+                      "value": "{{merchant_id}}",
+                      "key": "merchant_id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-KEY",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"id\": 899\n  },\n  {\n    \"id\": 2154\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "13366ef7-e696-4e1f-8640-16918018811e",
+              "name": "Missing or invalid credentials.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "model",
+                    "stock.shipment.out"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "filter",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "fields",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "per_page",
+                      "value": "100"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": "Your Fulfil merchant subdomain.",
+                      "type": "any",
+                      "value": "{{merchant_id}}",
+                      "key": "merchant_id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-KEY",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"string\",\n  \"message\": \"string\",\n  \"code\": 9052\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "af2dfd70-61f5-49aa-b50a-5523d7207858",
+          "name": "Search inbound shipments",
+          "request": {
+            "name": "Search inbound shipments",
+            "description": {
+              "content": "Searches supplier (inbound) shipments / receipts (stock.shipment.in).",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "model",
+                "stock.shipment.in"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "filter",
+                  "value": "<string>",
+                  "description": "A Fulfil domain filter (JSON-encoded list of clauses)."
+                },
+                {
+                  "disabled": false,
+                  "key": "fields",
+                  "value": "<string>",
+                  "description": "Comma-separated list of fields to return."
+                },
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "1",
+                  "description": "Page number for pagination."
+                },
+                {
+                  "disabled": false,
+                  "key": "per_page",
+                  "value": "100",
+                  "description": "Number of records per page."
+                }
+              ],
+              "variable": [
+                {
+                  "description": "Your Fulfil merchant subdomain.",
+                  "type": "any",
+                  "value": "{{merchant_id}}",
+                  "key": "merchant_id"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "d2e62a20-c59c-4d7c-bb59-9a6a3af1dfb9",
+              "name": "A list of records.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "model",
+                    "stock.shipment.in"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "filter",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "fields",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "per_page",
+                      "value": "100"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": "Your Fulfil merchant subdomain.",
+                      "type": "any",
+                      "value": "{{merchant_id}}",
+                      "key": "merchant_id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-KEY",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"id\": 6357,\n    \"key_0\": \"string\"\n  },\n  {\n    \"id\": 6760,\n    \"key_0\": true,\n    \"key_1\": 5232\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "6ef3a034-7bfb-44c6-953d-cc59876218b3",
+              "name": "Missing or invalid credentials.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "model",
+                    "stock.shipment.in"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "filter",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "fields",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "per_page",
+                      "value": "100"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": "Your Fulfil merchant subdomain.",
+                      "type": "any",
+                      "value": "{{merchant_id}}",
+                      "key": "merchant_id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-KEY",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"string\",\n  \"message\": \"string\",\n  \"code\": 9052\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "description": {
+        "content": "Your Fulfil merchant subdomain.",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "mystore",
+      "key": "merchant_id"
+    },
+    {
+      "type": "string",
+      "value": "https://{{merchant_id}}.fulfil.io/api/v2",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "X-API-KEY"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "3cdf92dc-46b7-4a53-b364-cf06f0f5128a",
+    "name": "Fulfil REST API (v2) Authentication Shipments API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Fulfil is a cloud ERP and operations platform for e-commerce, DTC, and wholesale merchants. Its REST API (v2) exposes every ERP resource through a single, uniform \"model interface\": each business object (sales orders, products, stock moves, parties, shipments, purchases, production, and thousands more) is a named model addressed at `/api/v2/model/{model.name}`, with generic CRUD, a `search_read` search, `count`, and the ability to call arbitrary model methods (actions), run reports, and drive wizards. Fulfil advertises 6,000+ endpoints across all models.\nThe base URL is per-merchant: `https://{merchant_id}.fulfil.io/api/v2`. Authentication is either a personal access token sent in the `X-API-KEY` header (or as HTTP Basic) for private integrations, or OAuth 2.0 for public apps. Use `GET /api/v2/test` to verify credentials.\nFulfil records are model-specific and dynamically typed, so request and response bodies below are represented as open JSON objects (a `Record` is an object with an integer `id` plus arbitrary model fields). This document models the generic interface plus concrete headline models; the same interface applies to any other Fulfil model by substituting its name.\n\nContact Support:\n Name: Fulfil Developer Documentation",
+      "type": "text/plain"
+    }
+  }
+}

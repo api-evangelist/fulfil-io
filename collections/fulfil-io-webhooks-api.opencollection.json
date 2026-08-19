@@ -1,0 +1,66 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Fulfil REST API (v2) Authentication Webhooks API",
+    "version": "2.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "X-API-KEY",
+      "value": "{{X-API-KEY}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Webhooks",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List webhook subscriptions",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{merchant_id}.fulfil.io/api/v2/model/webhook.webhook",
+            "params": [
+              {
+                "name": "filter",
+                "value": "",
+                "type": "query",
+                "description": "A Fulfil domain filter (JSON-encoded list of clauses)."
+              },
+              {
+                "name": "fields",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated list of fields to return."
+              }
+            ]
+          },
+          "docs": "Lists registered webhook subscriptions. Webhooks are Fulfil records like any other model, so they are managed through the same model interface."
+        },
+        {
+          "info": {
+            "name": "Create a webhook subscription",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{merchant_id}.fulfil.io/api/v2/model/webhook.webhook",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Registers a new webhook subscription for a model/event. Fulfil delivers matching events as HTTP POSTs to the configured URL, signed with HMAC-SHA256. A Google Pub/Sub delivery option is available for high volume."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

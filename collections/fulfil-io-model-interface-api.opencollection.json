@@ -1,0 +1,258 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Fulfil REST API (v2) Authentication Model Interface API",
+    "version": "2.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "X-API-KEY",
+      "value": "{{X-API-KEY}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Model Interface",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Search records of a model",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{merchant_id}.fulfil.io/api/v2/model/:model_name",
+            "params": [
+              {
+                "name": "model_name",
+                "value": "",
+                "type": "path",
+                "description": "The Fulfil model name (for example sale.sale, product.product, product.template, stock.move, party.party, stock.shipment.out, purchase.purchase, production)."
+              },
+              {
+                "name": "filter",
+                "value": "",
+                "type": "query",
+                "description": "A Fulfil domain filter (JSON-encoded list of clauses)."
+              },
+              {
+                "name": "fields",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated list of fields to return."
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Page number for pagination."
+              },
+              {
+                "name": "per_page",
+                "value": "",
+                "type": "query",
+                "description": "Number of records per page."
+              },
+              {
+                "name": "order",
+                "value": "",
+                "type": "query",
+                "description": "Sort order, for example \"id DESC\"."
+              }
+            ]
+          },
+          "docs": "Searches records of the given model. Accepts a domain filter, ordering, and pagination as query parameters. Returns matching record ids (and fields when requested)."
+        },
+        {
+          "info": {
+            "name": "Create records of a model",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{merchant_id}.fulfil.io/api/v2/model/:model_name",
+            "params": [
+              {
+                "name": "model_name",
+                "value": "",
+                "type": "path",
+                "description": "The Fulfil model name (for example sale.sale, product.product, product.template, stock.move, party.party, stock.shipment.out, purchase.purchase, production)."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates one or more records of the given model."
+        },
+        {
+          "info": {
+            "name": "Read a record",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{merchant_id}.fulfil.io/api/v2/model/:model_name/:id",
+            "params": [
+              {
+                "name": "model_name",
+                "value": "",
+                "type": "path",
+                "description": "The Fulfil model name (for example sale.sale, product.product, product.template, stock.move, party.party, stock.shipment.out, purchase.purchase, production)."
+              },
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The integer id of the record."
+              },
+              {
+                "name": "fields",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated list of fields to return."
+              }
+            ]
+          },
+          "docs": "Retrieves a single record of the given model by its id."
+        },
+        {
+          "info": {
+            "name": "Update a record",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://{merchant_id}.fulfil.io/api/v2/model/:model_name/:id",
+            "params": [
+              {
+                "name": "model_name",
+                "value": "",
+                "type": "path",
+                "description": "The Fulfil model name (for example sale.sale, product.product, product.template, stock.move, party.party, stock.shipment.out, purchase.purchase, production)."
+              },
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The integer id of the record."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Updates a single record of the given model by its id."
+        },
+        {
+          "info": {
+            "name": "Delete a record",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://{merchant_id}.fulfil.io/api/v2/model/:model_name/:id",
+            "params": [
+              {
+                "name": "model_name",
+                "value": "",
+                "type": "path",
+                "description": "The Fulfil model name (for example sale.sale, product.product, product.template, stock.move, party.party, stock.shipment.out, purchase.purchase, production)."
+              },
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The integer id of the record."
+              }
+            ]
+          },
+          "docs": "Deletes a single record of the given model by its id."
+        },
+        {
+          "info": {
+            "name": "Search and read records in one call",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://{merchant_id}.fulfil.io/api/v2/model/:model_name/search_read",
+            "params": [
+              {
+                "name": "model_name",
+                "value": "",
+                "type": "path",
+                "description": "The Fulfil model name (for example sale.sale, product.product, product.template, stock.move, party.party, stock.shipment.out, purchase.purchase, production)."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Combines search and read: accepts a domain filter, a list of fields, ordering, offset, and limit in the request body, and returns the matching records with the requested fields populated."
+        },
+        {
+          "info": {
+            "name": "Count records",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://{merchant_id}.fulfil.io/api/v2/model/:model_name/count",
+            "params": [
+              {
+                "name": "model_name",
+                "value": "",
+                "type": "path",
+                "description": "The Fulfil model name (for example sale.sale, product.product, product.template, stock.move, party.party, stock.shipment.out, purchase.purchase, production)."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Returns the number of records matching a domain filter."
+        },
+        {
+          "info": {
+            "name": "Call a model method (action)",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://{merchant_id}.fulfil.io/api/v2/model/:model_name/:method",
+            "params": [
+              {
+                "name": "model_name",
+                "value": "",
+                "type": "path",
+                "description": "The Fulfil model name (for example sale.sale, product.product, product.template, stock.move, party.party, stock.shipment.out, purchase.purchase, production)."
+              },
+              {
+                "name": "method",
+                "value": "",
+                "type": "path",
+                "description": "Name of the model method (action) to invoke."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Invokes an arbitrary method exposed by the model, passing positional arguments as a JSON array. Used for state transitions and business actions (for example confirming an order or processing a shipment)."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

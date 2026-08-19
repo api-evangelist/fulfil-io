@@ -1,0 +1,675 @@
+{
+  "item": [
+    {
+      "id": "369a047a-20da-45dc-98ba-649145f711bc",
+      "name": "Inventory & Stock",
+      "description": {
+        "content": "Inventory via stock.move and stock.location models.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "39a95d2a-285c-4ec3-954b-704e06268a59",
+          "name": "Search stock moves",
+          "request": {
+            "name": "Search stock moves",
+            "description": {
+              "content": "Searches inventory movements (stock.move) - transfers, adjustments, and shipment moves.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "model",
+                "stock.move"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "filter",
+                  "value": "<string>",
+                  "description": "A Fulfil domain filter (JSON-encoded list of clauses)."
+                },
+                {
+                  "disabled": false,
+                  "key": "fields",
+                  "value": "<string>",
+                  "description": "Comma-separated list of fields to return."
+                },
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "1",
+                  "description": "Page number for pagination."
+                },
+                {
+                  "disabled": false,
+                  "key": "per_page",
+                  "value": "100",
+                  "description": "Number of records per page."
+                }
+              ],
+              "variable": [
+                {
+                  "description": "Your Fulfil merchant subdomain.",
+                  "type": "any",
+                  "value": "{{merchant_id}}",
+                  "key": "merchant_id"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "68f6978b-4e0c-418f-a0ea-9c26be45c7a4",
+              "name": "A list of records.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "model",
+                    "stock.move"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "filter",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "fields",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "per_page",
+                      "value": "100"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": "Your Fulfil merchant subdomain.",
+                      "type": "any",
+                      "value": "{{merchant_id}}",
+                      "key": "merchant_id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-KEY",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"id\": 3953,\n    \"key_0\": 7722.932122794376\n  },\n  {\n    \"id\": 3246,\n    \"key_0\": \"string\",\n    \"key_1\": \"string\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "108befd5-9e60-486c-94e5-043edba924d1",
+              "name": "Missing or invalid credentials.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "model",
+                    "stock.move"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "filter",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "fields",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "per_page",
+                      "value": "100"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": "Your Fulfil merchant subdomain.",
+                      "type": "any",
+                      "value": "{{merchant_id}}",
+                      "key": "merchant_id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-KEY",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"string\",\n  \"message\": \"string\",\n  \"code\": 1619\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "775a053f-72d6-41c7-adc8-b41bc7bed2c4",
+          "name": "Create stock moves",
+          "request": {
+            "name": "Create stock moves",
+            "description": {
+              "content": "Creates one or more inventory movements (stock.move).",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "model",
+                "stock.move"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "Your Fulfil merchant subdomain.",
+                  "type": "any",
+                  "value": "{{merchant_id}}",
+                  "key": "merchant_id"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "[\n  {\n    \"id\": \"<integer>\",\n    \"key_0\": true\n  },\n  {\n    \"id\": \"<integer>\",\n    \"key_0\": 1863.8737901807413,\n    \"key_1\": false,\n    \"key_2\": false\n  }\n]",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "775e73ba-be17-4129-9a7b-be11534c88cd",
+              "name": "A list of records.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "model",
+                    "stock.move"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Your Fulfil merchant subdomain.",
+                      "type": "any",
+                      "value": "{{merchant_id}}",
+                      "key": "merchant_id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-KEY",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"id\": \"<integer>\",\n    \"key_0\": \"string\"\n  },\n  {\n    \"id\": \"<integer>\",\n    \"key_0\": 6005.614904751175\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "b215c553-d4bb-45d7-a7ac-8817a6914b74",
+              "name": "Missing or invalid credentials.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "model",
+                    "stock.move"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Your Fulfil merchant subdomain.",
+                      "type": "any",
+                      "value": "{{merchant_id}}",
+                      "key": "merchant_id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-KEY",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"string\",\n  \"message\": \"string\",\n  \"code\": 1619\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "374fcf4c-2c8b-4489-ae71-b9fc557c14e9",
+              "name": "The request payload failed validation.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "model",
+                    "stock.move"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Your Fulfil merchant subdomain.",
+                      "type": "any",
+                      "value": "{{merchant_id}}",
+                      "key": "merchant_id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-KEY",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"string\",\n  \"message\": \"string\",\n  \"code\": 1619\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "b57332e1-6988-4122-a0f8-ac2d96bbe4c1",
+          "name": "Search stock locations",
+          "request": {
+            "name": "Search stock locations",
+            "description": {
+              "content": "Searches warehouses, zones, and bins (stock.location).",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "model",
+                "stock.location"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "filter",
+                  "value": "<string>",
+                  "description": "A Fulfil domain filter (JSON-encoded list of clauses)."
+                },
+                {
+                  "disabled": false,
+                  "key": "fields",
+                  "value": "<string>",
+                  "description": "Comma-separated list of fields to return."
+                },
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "1",
+                  "description": "Page number for pagination."
+                },
+                {
+                  "disabled": false,
+                  "key": "per_page",
+                  "value": "100",
+                  "description": "Number of records per page."
+                }
+              ],
+              "variable": [
+                {
+                  "description": "Your Fulfil merchant subdomain.",
+                  "type": "any",
+                  "value": "{{merchant_id}}",
+                  "key": "merchant_id"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "f4697634-d1a1-4e67-8f9c-11b3aad70704",
+              "name": "A list of records.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "model",
+                    "stock.location"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "filter",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "fields",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "per_page",
+                      "value": "100"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": "Your Fulfil merchant subdomain.",
+                      "type": "any",
+                      "value": "{{merchant_id}}",
+                      "key": "merchant_id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-KEY",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"id\": \"<integer>\",\n    \"key_0\": \"string\"\n  },\n  {\n    \"id\": \"<integer>\",\n    \"key_0\": 6005.614904751175\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "bab0093f-6654-4223-bfa3-0bf46ee1f06d",
+              "name": "Missing or invalid credentials.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "model",
+                    "stock.location"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "filter",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "fields",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "per_page",
+                      "value": "100"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": "Your Fulfil merchant subdomain.",
+                      "type": "any",
+                      "value": "{{merchant_id}}",
+                      "key": "merchant_id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-KEY",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"string\",\n  \"message\": \"string\",\n  \"code\": 1619\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "description": {
+        "content": "Your Fulfil merchant subdomain.",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "mystore",
+      "key": "merchant_id"
+    },
+    {
+      "type": "string",
+      "value": "https://{{merchant_id}}.fulfil.io/api/v2",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "X-API-KEY"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "e8ffef82-d179-4c7c-8627-485c8588e5a2",
+    "name": "Fulfil REST API (v2) Authentication Inventory & Stock API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Fulfil is a cloud ERP and operations platform for e-commerce, DTC, and wholesale merchants. Its REST API (v2) exposes every ERP resource through a single, uniform \"model interface\": each business object (sales orders, products, stock moves, parties, shipments, purchases, production, and thousands more) is a named model addressed at `/api/v2/model/{model.name}`, with generic CRUD, a `search_read` search, `count`, and the ability to call arbitrary model methods (actions), run reports, and drive wizards. Fulfil advertises 6,000+ endpoints across all models.\nThe base URL is per-merchant: `https://{merchant_id}.fulfil.io/api/v2`. Authentication is either a personal access token sent in the `X-API-KEY` header (or as HTTP Basic) for private integrations, or OAuth 2.0 for public apps. Use `GET /api/v2/test` to verify credentials.\nFulfil records are model-specific and dynamically typed, so request and response bodies below are represented as open JSON objects (a `Record` is an object with an integer `id` plus arbitrary model fields). This document models the generic interface plus concrete headline models; the same interface applies to any other Fulfil model by substituting its name.\n\nContact Support:\n Name: Fulfil Developer Documentation",
+      "type": "text/plain"
+    }
+  }
+}

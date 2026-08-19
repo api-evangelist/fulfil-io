@@ -1,0 +1,100 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Fulfil REST API (v2) Authentication Shipments API",
+    "version": "2.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "X-API-KEY",
+      "value": "{{X-API-KEY}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Shipments",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Search outbound shipments",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{merchant_id}.fulfil.io/api/v2/model/stock.shipment.out",
+            "params": [
+              {
+                "name": "filter",
+                "value": "",
+                "type": "query",
+                "description": "A Fulfil domain filter (JSON-encoded list of clauses)."
+              },
+              {
+                "name": "fields",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated list of fields to return."
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Page number for pagination."
+              },
+              {
+                "name": "per_page",
+                "value": "",
+                "type": "query",
+                "description": "Number of records per page."
+              }
+            ]
+          },
+          "docs": "Searches customer (outbound) shipments (stock.shipment.out)."
+        },
+        {
+          "info": {
+            "name": "Search inbound shipments",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{merchant_id}.fulfil.io/api/v2/model/stock.shipment.in",
+            "params": [
+              {
+                "name": "filter",
+                "value": "",
+                "type": "query",
+                "description": "A Fulfil domain filter (JSON-encoded list of clauses)."
+              },
+              {
+                "name": "fields",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated list of fields to return."
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Page number for pagination."
+              },
+              {
+                "name": "per_page",
+                "value": "",
+                "type": "query",
+                "description": "Number of records per page."
+              }
+            ]
+          },
+          "docs": "Searches supplier (inbound) shipments / receipts (stock.shipment.in)."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
