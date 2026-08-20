@@ -29,6 +29,13 @@ accessModel:
 image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/fulfil-io.png
 tags:
 - ERP
+- E-Commerce
+- Order Management
+- Inventory
+- Warehouse Management
+- Manufacturing
+tags_raw:
+- ERP
 - E-commerce
 - Order Management
 - Inventory
@@ -243,6 +250,8 @@ apis:
   humanURL: https://developers.fulfil.io/
   baseURL: https://{merchant_id}.fulfil.io/api/v2
   tags:
+  - Webhook
+  tags_raw:
   - Webhooks
   properties:
   - type: OpenAPI
