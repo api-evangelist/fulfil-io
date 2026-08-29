@@ -281,6 +281,9 @@ apis:
   - type: Documentation
     url: https://www.fulfil.io/platform/api/
 common:
+- type: CapabilityMap
+  url: capabilities/fulfil-io-capability-edges.yml
+  name: Fulfil Business Capability Map
 - type: AgenticAccess
   url: agentic-access/fulfil-io-agentic-access.yml
 - type: TrustCenter
