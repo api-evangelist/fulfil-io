@@ -13,6 +13,18 @@ description: Fulfil is a cloud ERP and operations platform for e-commerce, DTC, 
   (X-API-KEY / HTTP Basic) for private integrations, and outbound webhooks (with a
   Google Pub/Sub option) deliver real-time ERP events such as order and shipment
   changes.
+deliveryModel:
+  model: saas
+  open_source: false
+  commercial: true
+  callable_host: true
+  label: Hosted service · you call their endpoint
+  confidence: high
+  source:
+  - openapi
+  - pricing
+  generated: '2026-08-28'
+  method: derived
 accessModel:
   pricing: paid
   onboarding: self-serve
