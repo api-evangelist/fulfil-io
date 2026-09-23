@@ -1,11 +1,7 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
-  title: Fulfil REST API (v2) Authentication Model Interface API
-  description: 'Fulfil is a cloud ERP and operations platform for e-commerce, DTC, and wholesale merchants. Its REST API (v2) exposes every ERP resource through a single, uniform "model interface": each business object (sales orders, products, stock moves, parties, shipments, purchases, production, and thousands more) is a named model addressed at `/api/v2/model/{model.name}`, with generic CRUD, a `search_read` search, `count`, and the ability to call arbitrary model methods (actions), run reports, and drive wizards. Fulfil advertises 6,000+ endpoints across all models.
-
-    The base URL is per-merchant: `https://{merchant_id}.fulfil.io/api/v2`. Authentication is either a personal access token sent in the `X-API-KEY` header (or as HTTP Basic) for private integrations, or OAuth 2.0 for public apps. Use `GET /api/v2/test` to verify credentials.
-
-    Fulfil records are model-specific and dynamically typed, so request and response bodies below are represented as open JSON objects (a `Record` is an object with an integer `id` plus arbitrary model fields). This document models the generic interface plus concrete headline models; the same interface applies to any other Fulfil model by substituting its name.'
+  title: Fulfil REST API (v2) Model Interface API
+  description: Fulfil is a cloud ERP and operations platform for e-commerce, DTC, and wholesale merchants.
   version: '2.0'
   contact:
     name: Fulfil Developer Documentation
@@ -186,61 +182,38 @@ paths:
         '401':
           $ref: '#/components/responses/Unauthorized'
 components:
-  parameters:
-    PerPage:
-      name: per_page
-      in: query
-      required: false
-      description: Number of records per page.
-      schema:
-        type: integer
-        default: 100
-    Filter:
-      name: filter
-      in: query
-      required: false
-      description: A Fulfil domain filter (JSON-encoded list of clauses).
-      schema:
-        type: string
-    Order:
-      name: order
-      in: query
-      required: false
-      description: Sort order, for example "id DESC".
-      schema:
-        type: string
-    Page:
-      name: page
-      in: query
-      required: false
-      description: Page number for pagination.
-      schema:
-        type: integer
-        default: 1
-    Id:
-      name: id
-      in: path
+  requestBodies:
+    Record:
       required: true
-      description: The integer id of the record.
-      schema:
-        type: integer
-    Fields:
-      name: fields
-      in: query
-      required: false
-      description: Comma-separated list of fields to return.
-      schema:
-        type: string
-    ModelName:
-      name: model_name
-      in: path
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Record'
+    RecordArray:
       required: true
-      description: The Fulfil model name (for example sale.sale, product.product, product.template, stock.move, party.party, stock.shipment.out, purchase.purchase, production).
-      schema:
-        type: string
+      content:
+        application/json:
+          schema:
+            type: array
+            items:
+              $ref: '#/components/schemas/Record'
   responses:
+    RecordList:
+      description: A list of records.
+      content:
+        application/json:
+          schema:
+            type: array
+            items:
+              $ref: '#/components/schemas/Record'
     ValidationError:
       description: The request payload failed validation.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    NotFound:
+      description: The requested record was not found.
       content:
         application/json:
           schema:
@@ -251,62 +224,65 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/Record'
-    NotFound:
-      description: The requested record was not found.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
     Unauthorized:
       description: Missing or invalid credentials.
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/Error'
-    RecordList:
-      description: A list of records.
-      content:
-        application/json:
-          schema:
-            type: array
-            items:
-              $ref: '#/components/schemas/Record'
-  requestBodies:
-    RecordArray:
+  parameters:
+    Filter:
+      name: filter
+      in: query
+      required: false
+      description: A Fulfil domain filter (JSON-encoded list of clauses).
+      schema:
+        type: string
+    Id:
+      name: id
+      in: path
       required: true
-      content:
-        application/json:
-          schema:
-            type: array
-            items:
-              $ref: '#/components/schemas/Record'
-    Record:
+      description: The integer id of the record.
+      schema:
+        type: integer
+    ModelName:
+      name: model_name
+      in: path
       required: true
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Record'
+      description: The Fulfil model name (for example sale.sale, product.product, product.template, stock.move, party.party, stock.shipment.out, purchase.purchase, production).
+      schema:
+        type: string
+    PerPage:
+      name: per_page
+      in: query
+      required: false
+      description: Number of records per page.
+      schema:
+        type: integer
+        default: 100
+    Order:
+      name: order
+      in: query
+      required: false
+      description: Sort order, for example "id DESC".
+      schema:
+        type: string
+    Fields:
+      name: fields
+      in: query
+      required: false
+      description: Comma-separated list of fields to return.
+      schema:
+        type: string
+    Page:
+      name: page
+      in: query
+      required: false
+      description: Page number for pagination.
+      schema:
+        type: integer
+        default: 1
   schemas:
-    Domain:
-      type: array
-      description: A Fulfil domain filter - a list of clauses such as ["name", "ilike", "iphone"] combined with logical operators.
-      items: {}
-    Error:
-      type: object
-      properties:
-        type:
-          type: string
-        message:
-          type: string
-        code:
-          type: integer
-    Record:
-      type: object
-      description: A Fulfil record. Fields vary by model; every persisted record has an integer id. Additional model-specific fields are permitted.
-      properties:
-        id:
-          type: integer
-      additionalProperties: true
     SearchReadRequest:
       type: object
       properties:
@@ -328,6 +304,26 @@ components:
         limit:
           type: integer
           default: 100
+    Domain:
+      type: array
+      description: A Fulfil domain filter - a list of clauses such as ["name", "ilike", "iphone"] combined with logical operators.
+      items: {}
+    Record:
+      type: object
+      description: A Fulfil record. Fields vary by model; every persisted record has an integer id. Additional model-specific fields are permitted.
+      properties:
+        id:
+          type: integer
+      additionalProperties: true
+    Error:
+      type: object
+      properties:
+        type:
+          type: string
+        message:
+          type: string
+        code:
+          type: integer
   securitySchemes:
     apiKeyAuth:
       type: apiKey

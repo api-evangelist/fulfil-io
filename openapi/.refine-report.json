@@ -1,16 +1,7 @@
 {
   "provider": "fulfil-io",
   "sources": [
-    "fulfil-io-authentication-api-openapi.yml",
-    "fulfil-io-customers-api-openapi.yml",
-    "fulfil-io-inventory-stock-api-openapi.yml",
-    "fulfil-io-manufacturing-api-openapi.yml",
-    "fulfil-io-model-interface-api-openapi.yml",
-    "fulfil-io-products-variants-api-openapi.yml",
-    "fulfil-io-purchases-api-openapi.yml",
-    "fulfil-io-sales-orders-api-openapi.yml",
-    "fulfil-io-shipments-api-openapi.yml",
-    "fulfil-io-webhooks-api-openapi.yml"
+    "_original/fulfil-io-openapi.yml"
   ],
   "outputs": [
     "fulfil-io-authentication-api-openapi.yml",
@@ -27,6 +18,21 @@
   "archived": [],
   "errors": [],
   "warnings": [],
-  "notes": [],
-  "skipped": []
+  "notes": [
+    "sourced from openapi/_original/ (1 archived document(s)); previously refined output at the top level was skipped rather than re-split",
+    "fulfil-io-openapi.yml: upgraded openapi 3.0.3 -> OpenAPI 3.2.0",
+    "apis.yml register: already-registered"
+  ],
+  "skipped": [
+    "fulfil-io-authentication-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "fulfil-io-customers-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "fulfil-io-inventory-stock-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "fulfil-io-manufacturing-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "fulfil-io-model-interface-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "fulfil-io-products-variants-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "fulfil-io-purchases-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "fulfil-io-sales-orders-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "fulfil-io-shipments-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "fulfil-io-webhooks-api-openapi.yml: previously refined output, superseded by openapi/_original/"
+  ]
 }

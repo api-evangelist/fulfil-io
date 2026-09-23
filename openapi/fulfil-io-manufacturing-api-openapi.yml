@@ -1,11 +1,7 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
-  title: Fulfil REST API (v2) Authentication Manufacturing API
-  description: 'Fulfil is a cloud ERP and operations platform for e-commerce, DTC, and wholesale merchants. Its REST API (v2) exposes every ERP resource through a single, uniform "model interface": each business object (sales orders, products, stock moves, parties, shipments, purchases, production, and thousands more) is a named model addressed at `/api/v2/model/{model.name}`, with generic CRUD, a `search_read` search, `count`, and the ability to call arbitrary model methods (actions), run reports, and drive wizards. Fulfil advertises 6,000+ endpoints across all models.
-
-    The base URL is per-merchant: `https://{merchant_id}.fulfil.io/api/v2`. Authentication is either a personal access token sent in the `X-API-KEY` header (or as HTTP Basic) for private integrations, or OAuth 2.0 for public apps. Use `GET /api/v2/test` to verify credentials.
-
-    Fulfil records are model-specific and dynamically typed, so request and response bodies below are represented as open JSON objects (a `Record` is an object with an integer `id` plus arbitrary model fields). This document models the generic interface plus concrete headline models; the same interface applies to any other Fulfil model by substituting its name.'
+  title: Fulfil REST API (v2) Manufacturing API
+  description: Fulfil is a cloud ERP and operations platform for e-commerce, DTC, and wholesale merchants.
   version: '2.0'
   contact:
     name: Fulfil Developer Documentation
@@ -60,7 +56,35 @@ paths:
         '422':
           $ref: '#/components/responses/ValidationError'
 components:
+  responses:
+    RecordList:
+      description: A list of records.
+      content:
+        application/json:
+          schema:
+            type: array
+            items:
+              $ref: '#/components/schemas/Record'
+    ValidationError:
+      description: The request payload failed validation.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    Unauthorized:
+      description: Missing or invalid credentials.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
   parameters:
+    Filter:
+      name: filter
+      in: query
+      required: false
+      description: A Fulfil domain filter (JSON-encoded list of clauses).
+      schema:
+        type: string
     PerPage:
       name: per_page
       in: query
@@ -69,13 +93,6 @@ components:
       schema:
         type: integer
         default: 100
-    Filter:
-      name: filter
-      in: query
-      required: false
-      description: A Fulfil domain filter (JSON-encoded list of clauses).
-      schema:
-        type: string
     Fields:
       name: fields
       in: query
@@ -91,27 +108,6 @@ components:
       schema:
         type: integer
         default: 1
-  responses:
-    ValidationError:
-      description: The request payload failed validation.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    Unauthorized:
-      description: Missing or invalid credentials.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    RecordList:
-      description: A list of records.
-      content:
-        application/json:
-          schema:
-            type: array
-            items:
-              $ref: '#/components/schemas/Record'
   requestBodies:
     RecordArray:
       required: true
@@ -122,6 +118,13 @@ components:
             items:
               $ref: '#/components/schemas/Record'
   schemas:
+    Record:
+      type: object
+      description: A Fulfil record. Fields vary by model; every persisted record has an integer id. Additional model-specific fields are permitted.
+      properties:
+        id:
+          type: integer
+      additionalProperties: true
     Error:
       type: object
       properties:
@@ -131,13 +134,6 @@ components:
           type: string
         code:
           type: integer
-    Record:
-      type: object
-      description: A Fulfil record. Fields vary by model; every persisted record has an integer id. Additional model-specific fields are permitted.
-      properties:
-        id:
-          type: integer
-      additionalProperties: true
   securitySchemes:
     apiKeyAuth:
       type: apiKey
