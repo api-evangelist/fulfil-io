@@ -74,59 +74,16 @@ paths:
         '401':
           $ref: '#/components/responses/Unauthorized'
 components:
-  responses:
-    RecordList:
-      description: A list of records.
-      content:
-        application/json:
-          schema:
-            type: array
-            items:
-              $ref: '#/components/schemas/Record'
-    ValidationError:
-      description: The request payload failed validation.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    Unauthorized:
-      description: Missing or invalid credentials.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-  parameters:
-    Filter:
-      name: filter
-      in: query
-      required: false
-      description: A Fulfil domain filter (JSON-encoded list of clauses).
-      schema:
-        type: string
-    PerPage:
-      name: per_page
-      in: query
-      required: false
-      description: Number of records per page.
-      schema:
-        type: integer
-        default: 100
-    Fields:
-      name: fields
-      in: query
-      required: false
-      description: Comma-separated list of fields to return.
-      schema:
-        type: string
-    Page:
-      name: page
-      in: query
-      required: false
-      description: Page number for pagination.
-      schema:
-        type: integer
-        default: 1
   schemas:
+    Error:
+      type: object
+      properties:
+        type:
+          type: string
+        message:
+          type: string
+        code:
+          type: integer
     SearchReadRequest:
       type: object
       properties:
@@ -159,15 +116,58 @@ components:
         id:
           type: integer
       additionalProperties: true
-    Error:
-      type: object
-      properties:
-        type:
-          type: string
-        message:
-          type: string
-        code:
-          type: integer
+  responses:
+    RecordList:
+      description: A list of records.
+      content:
+        application/json:
+          schema:
+            type: array
+            items:
+              $ref: '#/components/schemas/Record'
+    Unauthorized:
+      description: Missing or invalid credentials.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    ValidationError:
+      description: The request payload failed validation.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+  parameters:
+    Filter:
+      name: filter
+      in: query
+      required: false
+      description: A Fulfil domain filter (JSON-encoded list of clauses).
+      schema:
+        type: string
+    Page:
+      name: page
+      in: query
+      required: false
+      description: Page number for pagination.
+      schema:
+        type: integer
+        default: 1
+    PerPage:
+      name: per_page
+      in: query
+      required: false
+      description: Number of records per page.
+      schema:
+        type: integer
+        default: 100
+    Fields:
+      name: fields
+      in: query
+      required: false
+      description: Comma-separated list of fields to return.
+      schema:
+        type: string
   requestBodies:
     RecordArray:
       required: true
