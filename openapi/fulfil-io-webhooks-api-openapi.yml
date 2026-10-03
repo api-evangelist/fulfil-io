@@ -54,23 +54,6 @@ paths:
         '422':
           $ref: '#/components/responses/ValidationError'
 components:
-  schemas:
-    Error:
-      type: object
-      properties:
-        type:
-          type: string
-        message:
-          type: string
-        code:
-          type: integer
-    Record:
-      type: object
-      description: A Fulfil record. Fields vary by model; every persisted record has an integer id. Additional model-specific fields are permitted.
-      properties:
-        id:
-          type: integer
-      additionalProperties: true
   responses:
     RecordList:
       description: A list of records.
@@ -80,14 +63,14 @@ components:
             type: array
             items:
               $ref: '#/components/schemas/Record'
-    Unauthorized:
-      description: Missing or invalid credentials.
+    ValidationError:
+      description: The request payload failed validation.
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/Error'
-    ValidationError:
-      description: The request payload failed validation.
+    Unauthorized:
+      description: Missing or invalid credentials.
       content:
         application/json:
           schema:
@@ -107,6 +90,23 @@ components:
       description: Comma-separated list of fields to return.
       schema:
         type: string
+  schemas:
+    Record:
+      type: object
+      description: A Fulfil record. Fields vary by model; every persisted record has an integer id. Additional model-specific fields are permitted.
+      properties:
+        id:
+          type: integer
+      additionalProperties: true
+    Error:
+      type: object
+      properties:
+        type:
+          type: string
+        message:
+          type: string
+        code:
+          type: integer
   requestBodies:
     RecordArray:
       required: true

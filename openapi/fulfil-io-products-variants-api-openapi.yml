@@ -106,48 +106,6 @@ paths:
         '401':
           $ref: '#/components/responses/Unauthorized'
 components:
-  schemas:
-    Error:
-      type: object
-      properties:
-        type:
-          type: string
-        message:
-          type: string
-        code:
-          type: integer
-    SearchReadRequest:
-      type: object
-      properties:
-        filter:
-          $ref: '#/components/schemas/Domain'
-        fields:
-          type: array
-          items:
-            type: string
-        order:
-          type: array
-          items:
-            type: array
-            items:
-              type: string
-        offset:
-          type: integer
-          default: 0
-        limit:
-          type: integer
-          default: 100
-    Domain:
-      type: array
-      description: A Fulfil domain filter - a list of clauses such as ["name", "ilike", "iphone"] combined with logical operators.
-      items: {}
-    Record:
-      type: object
-      description: A Fulfil record. Fields vary by model; every persisted record has an integer id. Additional model-specific fields are permitted.
-      properties:
-        id:
-          type: integer
-      additionalProperties: true
   responses:
     RecordList:
       description: A list of records.
@@ -177,14 +135,6 @@ components:
       description: A Fulfil domain filter (JSON-encoded list of clauses).
       schema:
         type: string
-    Page:
-      name: page
-      in: query
-      required: false
-      description: Page number for pagination.
-      schema:
-        type: integer
-        default: 1
     PerPage:
       name: per_page
       in: query
@@ -200,6 +150,56 @@ components:
       description: Comma-separated list of fields to return.
       schema:
         type: string
+    Page:
+      name: page
+      in: query
+      required: false
+      description: Page number for pagination.
+      schema:
+        type: integer
+        default: 1
+  schemas:
+    Record:
+      type: object
+      description: A Fulfil record. Fields vary by model; every persisted record has an integer id. Additional model-specific fields are permitted.
+      properties:
+        id:
+          type: integer
+      additionalProperties: true
+    SearchReadRequest:
+      type: object
+      properties:
+        filter:
+          $ref: '#/components/schemas/Domain'
+        fields:
+          type: array
+          items:
+            type: string
+        order:
+          type: array
+          items:
+            type: array
+            items:
+              type: string
+        offset:
+          type: integer
+          default: 0
+        limit:
+          type: integer
+          default: 100
+    Error:
+      type: object
+      properties:
+        type:
+          type: string
+        message:
+          type: string
+        code:
+          type: integer
+    Domain:
+      type: array
+      description: A Fulfil domain filter - a list of clauses such as ["name", "ilike", "iphone"] combined with logical operators.
+      items: {}
   requestBodies:
     RecordArray:
       required: true
