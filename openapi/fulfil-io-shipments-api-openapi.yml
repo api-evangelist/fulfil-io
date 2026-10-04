@@ -58,21 +58,6 @@ paths:
         '401':
           $ref: '#/components/responses/Unauthorized'
 components:
-  responses:
-    RecordList:
-      description: A list of records.
-      content:
-        application/json:
-          schema:
-            type: array
-            items:
-              $ref: '#/components/schemas/Record'
-    Unauthorized:
-      description: Missing or invalid credentials.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
   parameters:
     Filter:
       name: filter
@@ -81,14 +66,6 @@ components:
       description: A Fulfil domain filter (JSON-encoded list of clauses).
       schema:
         type: string
-    PerPage:
-      name: per_page
-      in: query
-      required: false
-      description: Number of records per page.
-      schema:
-        type: integer
-        default: 100
     Page:
       name: page
       in: query
@@ -104,14 +81,15 @@ components:
       description: Comma-separated list of fields to return.
       schema:
         type: string
+    PerPage:
+      name: per_page
+      in: query
+      required: false
+      description: Number of records per page.
+      schema:
+        type: integer
+        default: 100
   schemas:
-    Record:
-      type: object
-      description: A Fulfil record. Fields vary by model; every persisted record has an integer id. Additional model-specific fields are permitted.
-      properties:
-        id:
-          type: integer
-      additionalProperties: true
     Error:
       type: object
       properties:
@@ -121,6 +99,28 @@ components:
           type: string
         code:
           type: integer
+    Record:
+      type: object
+      description: A Fulfil record. Fields vary by model; every persisted record has an integer id. Additional model-specific fields are permitted.
+      properties:
+        id:
+          type: integer
+      additionalProperties: true
+  responses:
+    RecordList:
+      description: A list of records.
+      content:
+        application/json:
+          schema:
+            type: array
+            items:
+              $ref: '#/components/schemas/Record'
+    Unauthorized:
+      description: Missing or invalid credentials.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
   securitySchemes:
     apiKeyAuth:
       type: apiKey

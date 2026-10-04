@@ -182,74 +182,12 @@ paths:
         '401':
           $ref: '#/components/responses/Unauthorized'
 components:
-  responses:
-    RecordList:
-      description: A list of records.
-      content:
-        application/json:
-          schema:
-            type: array
-            items:
-              $ref: '#/components/schemas/Record'
-    Unauthorized:
-      description: Missing or invalid credentials.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    NotFound:
-      description: The requested record was not found.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    ValidationError:
-      description: The request payload failed validation.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    Record:
-      description: A single record.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Record'
   parameters:
     Filter:
       name: filter
       in: query
       required: false
       description: A Fulfil domain filter (JSON-encoded list of clauses).
-      schema:
-        type: string
-    PerPage:
-      name: per_page
-      in: query
-      required: false
-      description: Number of records per page.
-      schema:
-        type: integer
-        default: 100
-    Order:
-      name: order
-      in: query
-      required: false
-      description: Sort order, for example "id DESC".
-      schema:
-        type: string
-    Id:
-      name: id
-      in: path
-      required: true
-      description: The integer id of the record.
-      schema:
-        type: integer
-    ModelName:
-      name: model_name
-      in: path
-      required: true
-      description: The Fulfil model name (for example sale.sale, product.product, product.template, stock.move, party.party, stock.shipment.out, purchase.purchase, production).
       schema:
         type: string
     Fields:
@@ -267,7 +205,82 @@ components:
       schema:
         type: integer
         default: 1
+    Order:
+      name: order
+      in: query
+      required: false
+      description: Sort order, for example "id DESC".
+      schema:
+        type: string
+    ModelName:
+      name: model_name
+      in: path
+      required: true
+      description: The Fulfil model name (for example sale.sale, product.product, product.template, stock.move, party.party, stock.shipment.out, purchase.purchase, production).
+      schema:
+        type: string
+    Id:
+      name: id
+      in: path
+      required: true
+      description: The integer id of the record.
+      schema:
+        type: integer
+    PerPage:
+      name: per_page
+      in: query
+      required: false
+      description: Number of records per page.
+      schema:
+        type: integer
+        default: 100
+  responses:
+    ValidationError:
+      description: The request payload failed validation.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    RecordList:
+      description: A list of records.
+      content:
+        application/json:
+          schema:
+            type: array
+            items:
+              $ref: '#/components/schemas/Record'
+    Unauthorized:
+      description: Missing or invalid credentials.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    Record:
+      description: A single record.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Record'
+    NotFound:
+      description: The requested record was not found.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
   schemas:
+    Domain:
+      type: array
+      description: A Fulfil domain filter - a list of clauses such as ["name", "ilike", "iphone"] combined with logical operators.
+      items: {}
+    Error:
+      type: object
+      properties:
+        type:
+          type: string
+        message:
+          type: string
+        code:
+          type: integer
     Record:
       type: object
       description: A Fulfil record. Fields vary by model; every persisted record has an integer id. Additional model-specific fields are permitted.
@@ -296,26 +309,7 @@ components:
         limit:
           type: integer
           default: 100
-    Error:
-      type: object
-      properties:
-        type:
-          type: string
-        message:
-          type: string
-        code:
-          type: integer
-    Domain:
-      type: array
-      description: A Fulfil domain filter - a list of clauses such as ["name", "ilike", "iphone"] combined with logical operators.
-      items: {}
   requestBodies:
-    Record:
-      required: true
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Record'
     RecordArray:
       required: true
       content:
@@ -324,6 +318,12 @@ components:
             type: array
             items:
               $ref: '#/components/schemas/Record'
+    Record:
+      required: true
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Record'
   securitySchemes:
     apiKeyAuth:
       type: apiKey

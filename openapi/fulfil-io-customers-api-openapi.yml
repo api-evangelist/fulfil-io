@@ -74,27 +74,6 @@ paths:
         '401':
           $ref: '#/components/responses/Unauthorized'
 components:
-  responses:
-    RecordList:
-      description: A list of records.
-      content:
-        application/json:
-          schema:
-            type: array
-            items:
-              $ref: '#/components/schemas/Record'
-    Unauthorized:
-      description: Missing or invalid credentials.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    ValidationError:
-      description: The request payload failed validation.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
   parameters:
     Filter:
       name: filter
@@ -103,14 +82,6 @@ components:
       description: A Fulfil domain filter (JSON-encoded list of clauses).
       schema:
         type: string
-    PerPage:
-      name: per_page
-      in: query
-      required: false
-      description: Number of records per page.
-      schema:
-        type: integer
-        default: 100
     Fields:
       name: fields
       in: query
@@ -126,7 +97,49 @@ components:
       schema:
         type: integer
         default: 1
+    PerPage:
+      name: per_page
+      in: query
+      required: false
+      description: Number of records per page.
+      schema:
+        type: integer
+        default: 100
+  responses:
+    ValidationError:
+      description: The request payload failed validation.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    RecordList:
+      description: A list of records.
+      content:
+        application/json:
+          schema:
+            type: array
+            items:
+              $ref: '#/components/schemas/Record'
+    Unauthorized:
+      description: Missing or invalid credentials.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
   schemas:
+    Domain:
+      type: array
+      description: A Fulfil domain filter - a list of clauses such as ["name", "ilike", "iphone"] combined with logical operators.
+      items: {}
+    Error:
+      type: object
+      properties:
+        type:
+          type: string
+        message:
+          type: string
+        code:
+          type: integer
     Record:
       type: object
       description: A Fulfil record. Fields vary by model; every persisted record has an integer id. Additional model-specific fields are permitted.
@@ -155,19 +168,6 @@ components:
         limit:
           type: integer
           default: 100
-    Error:
-      type: object
-      properties:
-        type:
-          type: string
-        message:
-          type: string
-        code:
-          type: integer
-    Domain:
-      type: array
-      description: A Fulfil domain filter - a list of clauses such as ["name", "ilike", "iphone"] combined with logical operators.
-      items: {}
   requestBodies:
     RecordArray:
       required: true
