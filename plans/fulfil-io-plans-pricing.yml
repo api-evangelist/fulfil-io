@@ -124,3 +124,44 @@ plans:
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com
+x-canonical:
+  generated: '2026-10-08'
+  vocabulary: all/0-working/economics/plans-canonical.yml
+  models:
+  - subscription
+  units:
+  - negotiated
+  - period
+  plans:
+  - name: Fulfil ERP Subscription (Quote-Based)
+    access: other
+    model: subscription
+    model_how: stated
+    units:
+    - period
+    periods:
+    - month
+  - name: Warehouse Management (WMS) Add-On
+    access: other
+    model: subscription
+    model_how: stated
+    units:
+    - period
+    periods:
+    - month
+  - name: Manufacturing (MRP) Add-On
+    access: other
+    model: subscription
+    model_how: stated
+    units:
+    - period
+    periods:
+    - month
+  - name: Enterprise / High Volume
+    access: enterprise
+    model: subscription
+    model_how: derived
+    units:
+    - negotiated
+    periods:
+    - year
