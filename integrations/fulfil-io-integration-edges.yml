@@ -1,5 +1,5 @@
 generated: '2026-10-12'
-method: none
+method: searched
 source:
 - https://zapier.com/apps/fulfil-io/integrations
 - https://zapier.com/apps/fulfil/integrations
@@ -14,7 +14,24 @@ checked:
 - https://n8n.io/integrations/fulfil/
 - https://zapier.com/apps/fulfil-io/integrations
 - https://zapier.com/apps/fulfil/integrations
+- shopify/integrations/shopify-integration-edges.yml
 summary: null
 marketplace_apps: []
-edges: []
+edges:
+- partner_name: Shopify (own)
+  partner: shopify
+  partner_match: mirror
+  mirror_match: domain
+  type: marketplace
+  relationship: platform-app
+  direction: third-party
+  channel: partner-built
+  marketplace: own
+  evidence: https://apps.shopify.com/fulfil-retail-erp
+  mirror_of: shopify/integrations/shopify-integration-edges.yml
+  apps:
+  - Fulfil
+  listing_count: 1
+  detected: '2026-10-15'
+  detected_by: mirror-platform-listings.py
 templates: []
