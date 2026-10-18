@@ -9,11 +9,14 @@ source:
 - https://monid.ai/tools/fulfil-io
 checked:
 - https://composio.dev/toolkits/fulfil-io
+- https://fivetran.com/docs-sitemap.xml
+- https://fivetran.com/docs/connectors/partner-built-program
 - https://monid.ai/tools/fulfil-io
 - https://n8n.io/integrations/fulfil-io/
 - https://n8n.io/integrations/fulfil/
 - https://zapier.com/apps/fulfil-io/integrations
 - https://zapier.com/apps/fulfil/integrations
+- meltano/integrations/meltano-integration-edges.yml
 - shopify/integrations/shopify-integration-edges.yml
 summary: null
 marketplace_apps: []
@@ -34,4 +37,47 @@ edges:
   listing_count: 1
   detected: '2026-10-15'
   detected_by: mirror-platform-listings.py
+- partner_name: Fivetran
+  partner: fivetran
+  partner_match: aggregator
+  type: marketplace
+  marketplace: fivetran-connectors
+  channel: elt-connector
+  relationship: ipaas-bridge
+  direction: third-party
+  evidence: https://fivetran.com/docs/connectors/applications/fulfil
+  category: null
+  contract_reference:
+    register: Fivetran connectors (fivetran.com/docs/connectors, docs-sitemap.xml + Partner-Built program)
+    spec_file: null
+    role: elt-connector:fivetran
+    registered_name: Fulfil
+    matched_domain: fulfil.io
+    matched_by: domain
+    detected_by: sweep-data-integration.py
+    detected: '2026-10-18'
+    signal_note: one edge per (provider, platform); connectors, streams, packages and usage are context, never read
+    connector_paths:
+    - connectors/applications/fulfil
+    vendor_link: https://www.fulfil.io/
+    builder: Fivetran
+  detected_by: sweep-data-integration.py
+  first_seen: '2026-10-18'
+- partner_name: Meltano (meltano-hub)
+  partner: meltano
+  partner_match: mirror
+  mirror_match: domain
+  type: marketplace
+  relationship: platform-app
+  direction: third-party
+  channel: partner-built
+  marketplace: meltano-hub
+  evidence: https://hub.meltano.com/extractors/tap-fulfil--fulfilio
+  mirror_of: meltano/integrations/meltano-integration-edges.yml
+  apps:
+  - Fulfil
+  listing_count: 1
+  detected: '2026-10-18'
+  detected_by: mirror-platform-listings.py
+  category: data integration
 templates: []
