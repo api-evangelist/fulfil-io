@@ -18,6 +18,7 @@ checked:
 - https://zapier.com/apps/fulfil/integrations
 - meltano/integrations/meltano-integration-edges.yml
 - shopify/integrations/shopify-integration-edges.yml
+- slack/integrations/slack-integration-edges.yml
 summary: null
 marketplace_apps: []
 edges:
@@ -80,4 +81,21 @@ edges:
   detected: '2026-10-18'
   detected_by: mirror-platform-listings.py
   category: data integration
+- partner_name: Slack (own)
+  partner: slack
+  partner_match: mirror
+  mirror_match: domain
+  type: marketplace
+  relationship: platform-app
+  direction: third-party
+  channel: partner-built
+  marketplace: own
+  evidence: https://slack.com/marketplace/AKXH5BP88-fulfil
+  mirror_of: slack/integrations/slack-integration-edges.yml
+  apps:
+  - Fulfil
+  listing_count: 1
+  detected: '2026-10-18'
+  detected_by: mirror-platform-listings.py
+  category: Slack app
 templates: []
