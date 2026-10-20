@@ -19,25 +19,10 @@ checked:
 - meltano/integrations/meltano-integration-edges.yml
 - shopify/integrations/shopify-integration-edges.yml
 - slack/integrations/slack-integration-edges.yml
+- zendesk/integrations/zendesk-integration-edges.yml
 summary: null
 marketplace_apps: []
 edges:
-- partner_name: Shopify (own)
-  partner: shopify
-  partner_match: mirror
-  mirror_match: domain
-  type: marketplace
-  relationship: platform-app
-  direction: third-party
-  channel: partner-built
-  marketplace: own
-  evidence: https://apps.shopify.com/fulfil-retail-erp
-  mirror_of: shopify/integrations/shopify-integration-edges.yml
-  apps:
-  - Fulfil
-  listing_count: 1
-  detected: '2026-10-15'
-  detected_by: mirror-platform-listings.py
 - partner_name: Fivetran
   partner: fivetran
   partner_match: aggregator
@@ -81,6 +66,22 @@ edges:
   detected: '2026-10-18'
   detected_by: mirror-platform-listings.py
   category: data integration
+- partner_name: Shopify (own)
+  partner: shopify
+  partner_match: mirror
+  mirror_match: domain
+  type: marketplace
+  relationship: platform-app
+  direction: third-party
+  channel: partner-built
+  marketplace: own
+  evidence: https://apps.shopify.com/fulfil-retail-erp
+  mirror_of: shopify/integrations/shopify-integration-edges.yml
+  apps:
+  - Fulfil
+  listing_count: 1
+  detected: '2026-10-15'
+  detected_by: mirror-platform-listings.py
 - partner_name: Slack (own)
   partner: slack
   partner_match: mirror
@@ -98,4 +99,21 @@ edges:
   detected: '2026-10-18'
   detected_by: mirror-platform-listings.py
   category: Slack app
+- partner_name: Zendesk (own)
+  partner: zendesk
+  partner_match: mirror
+  mirror_match: domain
+  type: marketplace
+  relationship: platform-app
+  direction: third-party
+  channel: partner-built
+  marketplace: own
+  evidence: https://www.zendesk.com/marketplace/apps/support/102740/fulfil-io/
+  mirror_of: zendesk/integrations/zendesk-integration-edges.yml
+  apps:
+  - Fulfil.IO
+  listing_count: 1
+  detected: '2026-10-20'
+  detected_by: mirror-platform-listings.py
+  category: CRM and Marketing
 templates: []
