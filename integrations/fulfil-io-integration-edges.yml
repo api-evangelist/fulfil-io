@@ -31,6 +31,13 @@ checked:
 - https://www.antler.co/portfolio
 - https://www.techstars.com/portfolio
 - https://www.ycombinator.com/companies
+- https://docs.stripe.com/stripe-apps
+- https://docs.stripe.com/stripe-apps/review-requirements
+- https://marketplace.stripe.com/
+- https://marketplace.stripe.com/appm/apps
+- https://stripe.com/partners/directory
+- https://stripe.com/partners/verified-partners
+- https://stripe.partners/sitemap.xml
 summary: null
 marketplace_apps: []
 edges:
@@ -218,5 +225,40 @@ edges:
     batch: GA 15
     year: '2015'
   detected_by: sweep-accelerator-portfolios.py
+  first_seen: '2026-10-21'
+- partner_name: Stripe Partner Ecosystem
+  partner: stripe
+  partner_match: register
+  type: register
+  direction: partner-built
+  channel: standard-directory
+  relationship: standard-participant
+  evidence: https://stripe.partners/directory/fulfil
+  category: Stripe ecosystem partner
+  contract_reference:
+    register: Stripe Partner Ecosystem directory (stripe.com/partners/directory -> stripe.partners, PartnerPage
+      SSR __NUXT_DATA__)
+    standard: Stripe Partner Ecosystem
+    spec_file: null
+    role: stripe-partner
+    registered_name: Fulfil
+    register_id: fulfil
+    partner_tier: null
+    matched_domain: fulfil.io
+    matched_by: domain
+    identity_source: the directory's own website field for the partner (no lookup)
+    signal_note: 'participation only: directory listing (verification tier, if any, in partner_tier)'
+    context:
+      callouts:
+      - Accounting
+      - Ecommerce
+      - ERP
+      stripe_products:
+      - Payments
+      - Invoicing
+      location: Covina, United States
+    detected_by: sweep-stripe-app-marketplace.py
+    detected: '2026-10-21'
+  detected_by: sweep-stripe-app-marketplace.py
   first_seen: '2026-10-21'
 templates: []
