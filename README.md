@@ -1,4 +1,4 @@
-# Fulfil (fulfil-io)
+# Fulfil
 
 <!-- API-EVANGELIST-PROVENANCE:BEGIN -->
 > ### About this repository
@@ -64,227 +64,143 @@
 > Full detail: **[Where this data comes from](https://apievangelist.com/about/where-our-data-comes-from)**
 <!-- API-EVANGELIST-PROVENANCE:END -->
 
-Fulfil is a cloud ERP and operations platform for e-commerce, DTC, and wholesale merchants - unifying order management, inventory, warehouse operations (WMS), manufacturing and production (MRP), purchasing, and accounting in one system, purpose-built for Shopify Plus and high-volume DTC brands. The Fulfil REST API (v2) exposes every ERP resource through a single uniform "model interface" at `https://{merchant_id}.fulfil.io/api/v2`, advertising 6,000+ endpoints with full create/read/update/delete access, action calls, reports, and wizards across all models. Authentication is via OAuth 2.0 for public apps or personal access tokens (`X-API-KEY` / HTTP Basic) for private integrations, and outbound webhooks (with a Google Pub/Sub option) deliver real-time ERP events such as order and shipment changes.
+Fulfil is a cloud ERP and operations platform for e-commerce, DTC, and wholesale merchants - unifying order management, inventory, warehouse operations (WMS), manufacturing and production (MRP), purchasing, and accounting in one system, purpose-built for Shopify Plus and high-volume DTC brands. The Fulfil REST API (v2) exposes every ERP model through a single uniform model interface at https://{merchant_id}.fulfil.io/api/v2, advertising 6,000+ endpoints with full create/read/update/delete access, action calls, reports, and wizards across all models. Authentication is via OAuth 2.0 for public apps or personal access tokens (X-API-KEY / HTTP Basic) for private integrations, and outbound webhooks (with a Google Pub/Sub option) deliver real-time ERP events such as order and shipment changes.
 
-**APIs.json:** [https://raw.githubusercontent.com/api-evangelist/fulfil-io/refs/heads/main/apis.yml](https://raw.githubusercontent.com/api-evangelist/fulfil-io/refs/heads/main/apis.yml)
+**Areas:** ERP · E-Commerce · Order Management · Inventory · Warehouse Management · Manufacturing
 
-## Tags
+## Fulfil on APIs.io
 
-- ERP
-- E-commerce
-- Order Management
-- Inventory
-- Warehouse Management
-- Manufacturing
-- Operations
+Everything profiled for Fulfil is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/fulfil-io/](https://apis.io/providers/fulfil-io/)** — or go straight to one of the APIs or properties below.
 
-## Timestamps
+### APIs (10)
 
-- **Created:** 2026-07-04
-- **Modified:** 2026-07-04
+- [Fulfil Authentication API](https://apis.io/apis/fulfil-io/fulfil-io-authentication-api/) — Verify API credentials.
+- [Fulfil Customers API](https://apis.io/apis/fulfil-io/fulfil-io-customers-api/) — Customers, suppliers, and contacts via the party.party model.
+- [Fulfil Inventory & Stock API](https://apis.io/apis/fulfil-io/fulfil-io-inventory-stock-api/) — Inventory via stock.move and stock.location models.
+- [Fulfil Manufacturing API](https://apis.io/apis/fulfil-io/fulfil-io-manufacturing-api/) — Production orders via the production model.
+- [Fulfil Model Interface API](https://apis.io/apis/fulfil-io/fulfil-io-model-interface-api/) — The generic model interface applicable to any Fulfil model.
+- [Fulfil Products & Variants API](https://apis.io/apis/fulfil-io/fulfil-io-products-variants-api/) — Catalog via product.template and product.product models.
+- [Fulfil Purchases API](https://apis.io/apis/fulfil-io/fulfil-io-purchases-api/) — Purchase orders via the purchase.purchase model.
+- [Fulfil Sales Orders API](https://apis.io/apis/fulfil-io/fulfil-io-sales-orders-api/) — Sales orders via the sale.sale model.
+- [Fulfil Shipments API](https://apis.io/apis/fulfil-io/fulfil-io-shipments-api/) — Fulfillment via stock.shipment.out and stock.shipment.in models.
+- [Fulfil Webhooks API](https://apis.io/apis/fulfil-io/fulfil-io-webhooks-api/) — Webhook subscriptions for real-time ERP events.
 
-## APIs
+### Published properties
 
-### Fulfil Sales Orders API
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
 
-Create, search, read, update, and cancel sales orders through the `sale.sale` model - the customer, order lines, amounts, shipment and invoice state of every order captured from Shopify, marketplaces, or entered directly in Fulfil.
+#### Agentic access (1)
 
-- **Human URL:** [https://developers.fulfil.io/](https://developers.fulfil.io/)
-- **Base URL:** `https://{merchant_id}.fulfil.io/api/v2`
+Which operations an agent can call, which act, and which need a human in the loop.
 
-#### Tags
+- [Fulfil Io Agentic Access](https://apis.io/agentic-access/fulfil-io/fulfil-io-agentic-access/)
 
-- Sales Orders
-- Order Management
-- E-commerce
+#### Collections (11)
 
-#### Properties
+Postman and Open Collection request collections.
 
-- [Documentation](https://developers.fulfil.io/)
-- [API Reference](https://fulfiliorestapi.docs.apiary.io/)
-- [OpenAPI](openapi/fulfil-io-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/fulfil-io.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/fulfil-io.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+- [Fulfil REST API (v2)](https://apis.io/collections/fulfil-io/open-fulfil-io/)
+- [Fulfil REST API (v2) Authentication API](https://apis.io/collections/fulfil-io/open-fulfil-io-authentication-api/)
+- [Fulfil REST API (v2) Authentication Customers API](https://apis.io/collections/fulfil-io/open-fulfil-io-customers-api/)
+- [Fulfil REST API (v2) Authentication Inventory & Stock API](https://apis.io/collections/fulfil-io/open-fulfil-io-inventory-stock-api/)
+- [Fulfil REST API (v2) Authentication Manufacturing API](https://apis.io/collections/fulfil-io/open-fulfil-io-manufacturing-api/)
+- [Fulfil REST API (v2) Authentication Model Interface API](https://apis.io/collections/fulfil-io/open-fulfil-io-model-interface-api/)
+- [Fulfil REST API (v2) Authentication Products & Variants API](https://apis.io/collections/fulfil-io/open-fulfil-io-products-variants-api/)
+- [Fulfil REST API (v2) Authentication Purchases API](https://apis.io/collections/fulfil-io/open-fulfil-io-purchases-api/)
+- [Fulfil REST API (v2) Authentication Sales Orders API](https://apis.io/collections/fulfil-io/open-fulfil-io-sales-orders-api/)
+- [Fulfil REST API (v2) Authentication Shipments API](https://apis.io/collections/fulfil-io/open-fulfil-io-shipments-api/)
+- [Fulfil REST API (v2) Authentication Webhooks API](https://apis.io/collections/fulfil-io/open-fulfil-io-webhooks-api/)
 
-### Fulfil Products & Variants API
+#### Security (4)
 
-Manage the product catalog through the `product.template` (product groupings) and `product.product` (individual sellable variants / SKUs) models - codes, barcodes, pricing, attributes, and their relationships.
+Authentication, trust centre, and vulnerability disclosure.
 
-- **Human URL:** [https://developers.fulfil.io/](https://developers.fulfil.io/)
-- **Base URL:** `https://{merchant_id}.fulfil.io/api/v2`
+- [Fulfil Io Authentication](https://apis.io/security/fulfil-io/fulfil-io-authentication/)
+- [Fulfil Io Domain Security](https://apis.io/security/fulfil-io/fulfil-io-domain-security/)
+- [Fulfil Io Trust Center](https://apis.io/security/fulfil-io/fulfil-io-trust-center/)
+- [Fulfil Io Vulnerability Disclosure](https://apis.io/security/fulfil-io/fulfil-io-vulnerability-disclosure/)
 
-#### Tags
+#### OAuth scopes (1)
 
-- Products
-- Variants
-- Catalog
+The permissions the API asks for.
 
-#### Properties
+- [Fulfil Io Scopes](https://apis.io/scopes/fulfil-io/fulfil-io-scopes/)
 
-- [Documentation](https://developers.fulfil.io/)
-- [API Reference](https://fulfiliorestapi.docs.apiary.io/)
-- [OpenAPI](openapi/fulfil-io-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/fulfil-io.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/fulfil-io.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+#### Plans and pricing (1)
 
-### Fulfil Inventory & Stock API
+Published plans, tiers and prices.
 
-Read and record inventory through the `stock.move` (inventory movements) and `stock.location` (warehouses, zones, bins) models - on-hand quantities, transfers, adjustments, and stock levels by location.
+- [Fulfil Io Plans Pricing](https://apis.io/plans/fulfil-io/fulfil-io-plans-pricing/)
 
-- **Human URL:** [https://developers.fulfil.io/](https://developers.fulfil.io/)
-- **Base URL:** `https://{merchant_id}.fulfil.io/api/v2`
+#### Rate limits (1)
 
-#### Tags
+Published request limits.
 
-- Inventory
-- Stock
-- Warehouse
+- [Fulfil Io Rate Limits](https://apis.io/rate-limits/fulfil-io/fulfil-io-rate-limits/)
 
-#### Properties
+#### FinOps (1)
 
-- [Documentation](https://developers.fulfil.io/)
-- [API Reference](https://fulfiliorestapi.docs.apiary.io/)
-- [OpenAPI](openapi/fulfil-io-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/fulfil-io.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/fulfil-io.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+What the API costs to run, by operation.
 
-### Fulfil Customers API
+- [Fulfil Io Finops](https://apis.io/finops/fulfil-io/fulfil-io-finops/)
 
-Manage customers, suppliers, and contacts through the `party.party` model - names, addresses, contact mechanisms (email, phone), and the relationships that link parties to sales and purchase orders.
+## Where to find this API
 
-- **Human URL:** [https://developers.fulfil.io/](https://developers.fulfil.io/)
-- **Base URL:** `https://{merchant_id}.fulfil.io/api/v2`
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
 
-#### Tags
-
-- Customers
-- Parties
-- Contacts
-
-#### Properties
-
-- [Documentation](https://developers.fulfil.io/)
-- [API Reference](https://fulfiliorestapi.docs.apiary.io/)
-- [OpenAPI](openapi/fulfil-io-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/fulfil-io.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/fulfil-io.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-
-### Fulfil Shipments API
-
-Track and manage outbound and inbound shipments through the `stock.shipment.out` and `stock.shipment.in` models - fulfillment state, carrier and tracking data, and the moves that pick, pack, and ship customer orders.
-
-- **Human URL:** [https://developers.fulfil.io/](https://developers.fulfil.io/)
-- **Base URL:** `https://{merchant_id}.fulfil.io/api/v2`
-
-#### Tags
-
-- Shipments
-- Fulfillment
-- Logistics
-
-#### Properties
-
-- [Documentation](https://developers.fulfil.io/)
-- [API Reference](https://fulfiliorestapi.docs.apiary.io/)
-- [OpenAPI](openapi/fulfil-io-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/fulfil-io.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/fulfil-io.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-
-### Fulfil Purchases API
-
-Create and manage purchase orders through the `purchase.purchase` model - supplier, order lines, receipt and invoice state - to replenish inventory and supply manufacturing.
-
-- **Human URL:** [https://developers.fulfil.io/](https://developers.fulfil.io/)
-- **Base URL:** `https://{merchant_id}.fulfil.io/api/v2`
-
-#### Tags
-
-- Purchases
-- Procurement
-- Suppliers
-
-#### Properties
-
-- [Documentation](https://developers.fulfil.io/)
-- [API Reference](https://fulfiliorestapi.docs.apiary.io/)
-- [OpenAPI](openapi/fulfil-io-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/fulfil-io.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/fulfil-io.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-
-### Fulfil Manufacturing API
-
-Manage manufacturing through the `production` model - production orders, their inputs and outputs, bills of material, and the state transitions that turn raw materials into finished goods.
-
-- **Human URL:** [https://docs.fulfil.io/production/](https://docs.fulfil.io/production/)
-- **Base URL:** `https://{merchant_id}.fulfil.io/api/v2`
-
-#### Tags
-
-- Manufacturing
-- Production
-- MRP
-
-#### Properties
-
-- [Documentation](https://docs.fulfil.io/production/)
-- [API Reference](https://fulfiliorestapi.docs.apiary.io/)
-- [OpenAPI](openapi/fulfil-io-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/fulfil-io.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/fulfil-io.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-
-### Fulfil Webhooks API
-
-Register and manage webhook subscriptions so external systems receive real-time notifications when ERP events occur - orders created, inventory changes, shipments dispatched. Deliveries are HTTP POSTs signed with HMAC-SHA256; a Google Pub/Sub delivery option exists for high volume.
-
-- **Human URL:** [https://www.fulfil.io/platform/api/](https://www.fulfil.io/platform/api/)
-- **Base URL:** `https://{merchant_id}.fulfil.io/api/v2`
-
-#### Tags
-
-- Webhooks
-- Events
-- Real Time
-
-#### Properties
-
-- [Documentation](https://www.fulfil.io/platform/api/)
-- [API Reference](https://fulfiliorestapi.docs.apiary.io/)
-- [OpenAPI](openapi/fulfil-io-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/fulfil-io.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/fulfil-io.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-
-### Fulfil Model Interface API
-
-The uniform model interface that underlies every Fulfil resource - generic CRUD (`GET`/`POST` `/model/{model.name}`, `GET`/`PUT`/`DELETE` `/model/{model.name}/{id}`), `search_read`, `count`, arbitrary method (action) calls, reports, and wizards - plus the `/test` credential-check endpoint. Any of Fulfil's models can be driven through it.
-
-- **Human URL:** [https://developers.fulfil.io/](https://developers.fulfil.io/)
-- **Base URL:** `https://{merchant_id}.fulfil.io/api/v2`
-
-#### Tags
-
-- Model Interface
-- CRUD
-- Reports
-
-#### Properties
-
-- [Documentation](https://developers.fulfil.io/)
-- [API Reference](https://fulfiliorestapi.docs.apiary.io/)
-- [OpenAPI](openapi/fulfil-io-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/fulfil-io.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/fulfil-io.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-
-## Common Properties
-
-- [GitHub Organization](https://github.com/fulfilio)
-- [LinkedIn](https://www.linkedin.com/company/fulfil-io)
 - [Website](https://www.fulfil.io)
 - [Documentation](https://developers.fulfil.io/)
-- [Plans](plans/fulfil-io-plans-pricing.yml)
-- [Rate Limits](rate-limits/fulfil-io-rate-limits.yml)
-- [Fin Ops](finops/fulfil-io-finops.yml)
+- [GitHub](https://github.com/fulfilio)
 
-## Maintainers
+## API Evangelist rating
 
-**FN:** Kin Lane
-**Email:** kin@apievangelist.com
+**Kin Score 30.2** — thin · rubric 0.24.0 · scored 2026-10-17
+
+| Facet | Score |
+|---|---|
+| Discoverability | 66.1 |
+| Contract quality | 47.8 |
+| Contract governance | 0.0 |
+| Operational transparency | 10.5 |
+| Developer ergonomics | 26.2 |
+| Access clarity | 15.8 |
+
+**Agent readiness 20.1** — agent-aware
+
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | yes |
+| Agentic Access | derived (partial credit) |
+| Reversibility Documented | — |
+| MCP Server | — |
+| Auth Clarity | bearer (partial credit) |
+| Idempotency | — |
+| Error Semantics | — |
+| OpenAPI Examples | — |
+| Rate Limit Signal | derived (partial credit) |
+| Event Surface Described | — |
+| Agent Skills | — |
+| Well Known Catalog | — |
+| Consent Identity | — |
+| Agent Card | — |
+| Dry Run Mode | — |
+| Delegated Identity | documented (partial credit) |
+| Protected Resource Metadata | — |
+| Dynamic Client Registration | — |
+| Agentic Commerce | — |
+
+**Regulatory alignment 32.4** — Horizontal (data, software, accessibility, platform)
+
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/fulfil-io/](https://apis.io/providers/fulfil-io/).
+
+## How this profile is made
+
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
+
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for Fulfil: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
+
+## Open an issue
+
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/fulfil-io/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
